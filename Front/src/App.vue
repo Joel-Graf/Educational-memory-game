@@ -5,14 +5,11 @@
     </v-app-bar>
 
     <v-main>
-      <AppCard/>
-      <AppCard/>
-      <AppCard/>
-      <AppCard/>
-      <AppCard/>
-      <AppCard/>
-      <AppCard/>
-      <AppCard/>
+      <v-container fluid>
+        <v-fade-transition mode="out-in">
+          <router-view></router-view>
+        </v-fade-transition>
+      </v-container>
     </v-main>
   </v-app>
 </template>
