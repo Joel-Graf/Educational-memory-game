@@ -7,7 +7,8 @@
     <v-main>
       <v-container fluid>
         <v-fade-transition mode="out-in">
-          <router-view></router-view>
+          <!-- <router-view></router-view> -->
+          <ViewGame/>
         </v-fade-transition>
       </v-container>
     </v-main>
@@ -31,11 +32,11 @@
 </script>
 
 <script>
-import AppCard from './components/AppCard';
+import ViewGame from './views/ViewGame.vue';
 
 export default {
   components: {
-    AppCard,
+    ViewGame,
   },
 
   data: () => ({
