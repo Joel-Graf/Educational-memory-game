@@ -1,13 +1,13 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar app>
+    <v-app-bar app  >
       <v-toolbar-title>Jogo da Memória</v-toolbar-title>
     </v-app-bar>
 
     <v-main>
       <v-container fluid>
         <v-fade-transition mode="out-in">
-          <router-view></router-view>
+          <router-view> <AppLogin/> </router-view>
         </v-fade-transition>
       </v-container>
     </v-main>
@@ -32,10 +32,12 @@
 
 <script>
 import AppCard from './components/AppCard';
+import AppLogin from './Views/ViewLogin';
 
 export default {
   components: {
     AppCard,
+    AppLogin
   },
 
   data: () => ({
