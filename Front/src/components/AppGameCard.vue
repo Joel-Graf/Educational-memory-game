@@ -44,8 +44,12 @@
     },
     data() {
       return {
-        card: this.pCard
+        card: this.pCard,
+        cardsFliped: []
       }
+    },
+    created() {
+      this.card.isFliped = false 
     },
 
     methods: {
@@ -54,6 +58,8 @@
         var audio = new Audio(require(`@/assets/${this.card.sound}`));
         audio.play();
       },
+      clickCard() {},
+      flipCard() {},
     },
   }
 </script>

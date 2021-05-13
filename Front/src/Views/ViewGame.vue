@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppGameHeader :pDificulty="dificulty"/>
+    <AppGameHeader :pDificulty="dificulty" :pLevel='level'/>
     <v-container fluid>
       <v-row align='center' justify='space-around'>
         <AppGameCard 
@@ -24,6 +24,7 @@ export default {
 
   data() {
     return {
+      level: 'Floresta',
       dificulty: {id: 1, name: 'Fácil', cardQuantity: 6, timeLimit: 120},
       cards: [
         {id: 1, name: 'gato', image: 'gato-frente.jpg', sound: 'gato-som.mp3'},

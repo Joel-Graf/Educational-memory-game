@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  export default {  
+  export default {
     data() {
       return {
         cards: [
@@ -32,7 +32,7 @@
 </script>
 
 <script>
-import ViewGame from './views/ViewGame.vue';
+import ViewGame from './Views/ViewGame.vue';
 
 export default {
   components: {
