@@ -1,24 +1,34 @@
 <template>
   <div>
-    <div class="game-title">Fase 1</div>
+    <!-- Titulo -->
+    <div>{{dificulty.name}}</div>
+    
+    <!-- Contagem de carta -->
+    <div>{{cardPairsRemaining}}/{{dificulty.cardQuantity/2}}</div>
 
-    <div>Carta</div>
-
-    <div>Timer</div>
+    <!-- Tempo restante -->
+    <div>{{timeRemaining}}</div>
   </div>
 </template>
 
 <script>
 export default {
-  data: () => ({
-    //
-  }),
+  props: {
+    pDificulty: {
+      type: Object,
+      required: true
+    }
+  },
+  data() {
+    return {
+      dificulty: this.pDificulty,
+      cardPairsRemaining: this.pDificulty.cardQuantity/2,
+      timeRemaining: this.pDificulty.timeLimit,
+    }
+  }
 };
 </script>
 
 <style scoped>
-.game-title {
-  font-size: 1.6rem;
-  font-weight: bold;
-}
+
 </style>

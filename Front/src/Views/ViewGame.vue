@@ -1,7 +1,14 @@
 <template>
   <div>
-    <AppGameHeader/>
-    <AppGameCard/>
+    <AppGameHeader :pDificulty="dificulty"/>
+    <v-container fluid>
+      <v-row align='center' justify='space-around'>
+        <AppGameCard 
+          v-for="card in cards" :key="card.id"
+          :pCard="card"
+        />
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -15,9 +22,19 @@ export default {
     AppGameHeader,
   },
 
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      dificulty: {id: 1, name: 'Fácil', cardQuantity: 6, timeLimit: 120},
+      cards: [
+        {id: 1, name: 'gato', image: 'gato-frente.jpg', sound: 'gato-som.mp3'},
+        {id: 2, name: 'gato2', image: 'gato-frente.jpg', sound: 'gato-som.mp3'},
+        {id: 3, name: 'gato3', image: 'gato-frente.jpg', sound: 'gato-som.mp3'},
+      ]
+    }
+  },
+  mounted() {
+    //TODO: Mostrar Botão de inicio da partida
+  }
 
 };
 </script>
