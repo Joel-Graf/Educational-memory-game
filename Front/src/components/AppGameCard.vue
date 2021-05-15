@@ -2,35 +2,27 @@
   <v-card
     elevation="5"
     class="mx-auto my-6"
-    max-width="374"
+    width="324"
+    height="332"
+    @click="clickCard"
   >
-    <v-card-title class="d-flex justify-space-between text-uppercase font-weight-medium">
-      <span>({{card.id}})</span> 
-      <span>{{card.name}}</span>
-    </v-card-title>
+    <transition name="slide-fade">
+      <div v-if='isFliped'>
+        <v-card-title class="d-flex justify-space-between text-uppercase font-weight-medium">
+          <span>({{card.id}})</span> 
+          <span>{{card.name}}</span>
+        </v-card-title>
 
-    <v-img
-      height="350"
-      class="mx-3"
-      :src="require(`@/assets/${card.image}`)"
-    ></v-img>
-
-    <v-card-actions class="d-flex justify-space-around">
-      <v-btn
-        color="deep-purple lighten-2"
-        text
-        @click="playSound"
-      >
-        Ouvir
-      </v-btn>
-      <v-btn
-        color="deep-purple lighten-2"
-        text
-        @click="openAnimalView"
-      >
-        Detalhes
-      </v-btn>
-    </v-card-actions>
+        <v-img
+          height="260"
+          class="mx-3 mb-2"
+          :src="require(`@/assets/${card.image}`)"
+        ></v-img>
+      </div>
+      <div v-else>
+        <!-- TODO: Adicionar Fundo da carta -->
+      </div>
+    </transition>
   </v-card>
 </template>
 
@@ -40,26 +32,42 @@
       pCard: {
         type: Object,
         required: true
+      },
+      pIndex: {
+        type: Number,
+        required: true
+      },
+      pCardsFliped: {
+        type: Array,
+        required: true
       }
     },
     data() {
       return {
         card: this.pCard,
-        cardsFliped: []
+        index: this.pIndex,
+        cardsFliped: this.pCardsFliped,
+        isFliped: false
       }
     },
-    created() {
-      this.card.isFliped = false 
-    },
-
     methods: {
       playSound() {
         //TODO: Implementar bloqueio para SPAM
         var audio = new Audio(require(`@/assets/${this.card.sound}`));
         audio.play();
       },
-      clickCard() {},
-      flipCard() {},
+      clickCard() {
+        if(this.isFliped) {
+          //TODO: Carta já virada, rodar animação de erro
+          return
+        }
+        //FIXME: Precisa conferir se já não existe 2 flipadas antes
+        this.isFliped = true
+        this.$emit('flip-card', {id: this.card.id, index: this.index})
+      }
     },
   }
 </script>
+
+<style scoped>
+</style>
