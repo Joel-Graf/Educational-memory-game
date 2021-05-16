@@ -5,7 +5,7 @@
       <v-row align='center' justify='space-around'>
         <AppGameCard 
           v-for="(card, index) in cards" :key="card.id"
-          :pCard="card" :pIndex="index" :pCardsFliped="cardsFliped"
+          :pCard="card" :pIndex="index" :pCardsFliped="cardsFliped" :pIsGameLocked="isGameLocked" 
           @flip-card="handleFlipCard" 
           ref="CardsComponents"
         />
@@ -33,26 +33,31 @@ export default {
         {id: 2, name: 'gato2', image: 'gato-frente.jpg', sound: 'gato-som.mp3'},
         {id: 3, name: 'gato3', image: 'gato-frente.jpg', sound: 'gato-som.mp3'},
       ],
+      isGameLocked: false,
       cardsFliped: []
     }
   },
   methods: {
-    //TODO: Finalizar
+    //FIXME: Verificar como sincronizar o lock
     handleFlipCard(cardObject) {
-      // Não permite mais de 2 cartas viradas
-      if(this.cardsFliped.length > 2) { return }
+      if(!this.isGameLocked) {
+        // Adiciona a lista de cartas viradas
+        this.cardsFliped.push(cardObject)
 
-      // Adiciona a lista de cartas viradas
-      this.cardsFliped.push(cardObject)
-
-      // Caso exista 2 cartas na lista
-      // a) Se o ID bate é um match e deve excluir as cartas do jogo
-      // b) Se o ID não bate é erro e deve desflipar
-      if (this.cardsFliped.length == 2) {
-        // this.$refs.CardsComponents.forEach((card) => {
-        //   card.isFliped = false
-        // })
-        // this.cardsFliped = []
+        // Caso exista 2 cartas na lista
+        // a) Se o ID bate é um match e deve excluir as cartas do jogo
+        // b) Se o ID não bate é erro e deve desflipar
+        if (this.cardsFliped.length == 2) {
+          this.isGameLocked = true
+          let vueInst = this
+          setTimeout(function(){ 
+            vueInst.$refs.CardsComponents.forEach((card) => {
+              card.isFliped = false
+            })
+            vueInst.cardsFliped = []
+            vueInst.isGameLocked = false
+          }, 1000);
+        }
       }
     }
   },

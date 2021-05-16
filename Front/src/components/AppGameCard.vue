@@ -40,6 +40,10 @@
       pCardsFliped: {
         type: Array,
         required: true
+      },
+      pIsGameLocked: {
+        type: Boolean,
+        required: true
       }
     },
     data() {
@@ -47,6 +51,7 @@
         card: this.pCard,
         index: this.pIndex,
         cardsFliped: this.pCardsFliped,
+        isGameLocked: this.pIsGameLocked,
         isFliped: false
       }
     },
@@ -57,13 +62,13 @@
         audio.play();
       },
       clickCard() {
-        if(this.isFliped) {
-          //TODO: Carta já virada, rodar animação de erro
-          return
+        console.log(this.isGameLocked)
+        if(this.isFliped || this.isGameLocked) {
+          //TODO: Carta já virada ou jogo trancado, rodar animação de erro
+        } else {
+          this.isFliped = true
+          this.$emit('flip-card', {id: this.card.id, index: this.index})
         }
-        //FIXME: Precisa conferir se já não existe 2 flipadas antes
-        this.isFliped = true
-        this.$emit('flip-card', {id: this.card.id, index: this.index})
       }
     },
   }
