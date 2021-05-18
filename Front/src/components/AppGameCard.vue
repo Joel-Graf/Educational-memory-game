@@ -29,29 +29,26 @@
 <script>
   export default {
     props: {
-      pCard: {
+      Card: {
         type: Object,
         required: true
       },
-      pIndex: {
+      Index: {
         type: Number,
         required: true
       },
-      pCardsFliped: {
+      CardsFliped: {
         type: Array,
         required: true
       },
-      pIsGameLocked: {
+      IsGameLocked: {
         type: Boolean,
         required: true
       }
     },
     data() {
       return {
-        card: this.pCard,
-        index: this.pIndex,
-        cardsFliped: this.pCardsFliped,
-        isGameLocked: this.pIsGameLocked,
+        card: this.Card,
         isFliped: false
       }
     },
@@ -62,8 +59,7 @@
         audio.play();
       },
       clickCard() {
-        console.log(this.isGameLocked)
-        if(this.isFliped || this.isGameLocked) {
+        if(this.isFliped || this.IsGameLocked) {
           //TODO: Carta já virada ou jogo trancado, rodar animação de erro
         } else {
           this.isFliped = true

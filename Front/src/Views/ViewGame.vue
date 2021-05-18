@@ -5,7 +5,8 @@
       <v-row align='center' justify='space-around'>
         <AppGameCard 
           v-for="(card, index) in cards" :key="card.id"
-          :pCard="card" :pIndex="index" :pCardsFliped="cardsFliped" :pIsGameLocked="isGameLocked" 
+          :Card="card" :Index="index" :CardsFliped="cardsFliped" 
+          :IsGameLocked="isGameLocked"
           @flip-card="handleFlipCard" 
           ref="CardsComponents"
         />
@@ -38,15 +39,14 @@ export default {
     }
   },
   methods: {
-    //FIXME: Verificar como sincronizar o lock
+
     handleFlipCard(cardObject) {
+      //Verifica se o jogo está trancado (Existe duas cartas viradas)
       if(!this.isGameLocked) {
+
         // Adiciona a lista de cartas viradas
         this.cardsFliped.push(cardObject)
 
-        // Caso exista 2 cartas na lista
-        // a) Se o ID bate é um match e deve excluir as cartas do jogo
-        // b) Se o ID não bate é erro e deve desflipar
         if (this.cardsFliped.length == 2) {
           this.isGameLocked = true
           let vueInst = this
@@ -56,10 +56,12 @@ export default {
             })
             vueInst.cardsFliped = []
             vueInst.isGameLocked = false
-          }, 1000);
+          }, 1500);
         }
       }
+
     }
+    
   },
   mounted() {
     //TODO: Mostrar tela de loading até montar tudo, depois mostrar o botão
