@@ -51,9 +51,28 @@ export default {
 			level: this.pLevel, 
       dificulty: this.pDificulty, 
       cardPairsRemaining: this.pDificulty.cardQuantity/2, 
+			timerEnabled: true,
       timeRemaining: this.pDificulty.timeLimit, 
     }
   },
+	watch: {
+		timerEnabled(value) {
+			if (value) {
+				setTimeout(() => {
+					this.timeRemaining--;
+				}, 1000);
+			}
+		},
+		timeRemaining: {
+			handler(value) {
+				if (value > 0 && this.timerEnabled) {
+					setTimeout(() => {
+						this.timeRemaining--;
+					}, 1000);
+				}
+			}, immediate: true
+		}
+	},
 	filters: {
 		secondsFormatter(timeInSeconds) {
 			function str_pad_left(string,pad,length) {return (new Array(length+1).join(pad)+string).slice(-length);}
