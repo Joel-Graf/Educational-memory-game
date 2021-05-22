@@ -15,7 +15,13 @@
 
       <div>
         {{ timeRemaining | secondsFormatter }}
-        <v-progress-circular :value="timeRemainingPercentage" :color="timerColor" width="10" size="44" rotate="-90">
+        <v-progress-circular
+          :value="timeRemainingPercentage"
+          :color="timerColor"
+          width="10"
+          size="44"
+          rotate="-90"
+        >
           <v-icon color="blue-grey darken-2" size="36">
             {{ timerIcon }}
           </v-icon>
@@ -59,8 +65,8 @@ export default {
   },
   computed: {
     timeRemainingPercentage() {
-      return this.timeRemaining*100/this.initialTime
-    }
+      return (this.timeRemaining * 100) / this.initialTime;
+    },
   },
   watch: {
     TimerEnabled(value) {
@@ -83,16 +89,16 @@ export default {
     timeRemainingPercentage(timeRemainingPercentage) {
       if (timeRemainingPercentage <= 0) {
         // TODO: Emitir evento de derrota
-        alert('PERDEU')
-      } else if(timeRemainingPercentage <= 25) {
-        this.timerIcon = "mdi-clock-alert-outline"
-        this.timerColor = "red"
+        alert("PERDEU");
+      } else if (timeRemainingPercentage <= 25) {
+        this.timerIcon = "mdi-clock-alert-outline";
+        this.timerColor = "red";
       } else if (timeRemainingPercentage <= 50) {
-        this.timerColor = "warning"
+        this.timerColor = "warning";
       } else if (timeRemainingPercentage <= 75) {
-        this.timerColor = "amber"
+        this.timerColor = "amber";
       }
-    }
+    },
   },
   filters: {
     secondsFormatter(timeInSeconds) {
