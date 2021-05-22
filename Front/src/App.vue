@@ -32,7 +32,7 @@
 </script>
 
 <script>
-import ViewGame from './Views/ViewGame.vue';
+import ViewGame from './views/ViewGame.vue';
 
 export default {
   components: {
