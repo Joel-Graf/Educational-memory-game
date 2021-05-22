@@ -1,10 +1,3 @@
-<!--
-	Timer: mdiClockTimeFiveOutline
-	Timer Alerta: mdiClockAlertOutline
--->
-<!--
-	Progresso: <v-progress-circular :value="20"></v-progress-circular>
--->
 <template>
   <v-banner class="mx-5 my-1 px-5">
     <div class="d-flex justify-space-between">
@@ -22,9 +15,11 @@
 
       <div>
         {{ timeRemaining | secondsFormatter }}
-        <v-icon color="blue-grey darken-2" size="36">
-          mdi-clock-time-five-outline
-        </v-icon>
+        <v-progress-circular :value="timeRemainingPercentage" :color="timerColor" width="10" size="44" rotate="-90">
+          <v-icon color="blue-grey darken-2" size="36">
+            {{ timerIcon }}
+          </v-icon>
+        </v-progress-circular>
       </div>
     </div>
   </v-banner>
@@ -56,8 +51,16 @@ export default {
   },
   data() {
     return {
+      initialTime: this.Dificulty.timeLimit,
       timeRemaining: this.Dificulty.timeLimit,
+      timerIcon: "mdi-clock-time-five-outline",
+      timerColor: "success",
     };
+  },
+  computed: {
+    timeRemainingPercentage() {
+      return this.timeRemaining*100/this.initialTime
+    }
   },
   watch: {
     TimerEnabled(value) {
@@ -77,6 +80,19 @@ export default {
       },
       immediate: true,
     },
+    timeRemainingPercentage(timeRemainingPercentage) {
+      if (timeRemainingPercentage <= 0) {
+        // TODO: Emitir evento de derrota
+        alert('PERDEU')
+      } else if(timeRemainingPercentage <= 25) {
+        this.timerIcon = "mdi-clock-alert-outline"
+        this.timerColor = "red"
+      } else if (timeRemainingPercentage <= 50) {
+        this.timerColor = "warning"
+      } else if (timeRemainingPercentage <= 75) {
+        this.timerColor = "amber"
+      }
+    }
   },
   filters: {
     secondsFormatter(timeInSeconds) {
