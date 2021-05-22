@@ -53,9 +53,8 @@ const routes = [
     component: ViewZoo,
   },
   {
-    path: "/*",
-    name: "Login",
-    component: ViewLogin,
+    path: "*",
+    redirect: '/Login'
   },
 ];
 
