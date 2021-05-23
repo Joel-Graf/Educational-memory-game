@@ -7,7 +7,7 @@
     <v-main>
       <v-container fluid>
         <v-fade-transition mode="out-in">
-          <router-view></router-view>
+          <ViewMenu/>
         </v-fade-transition>
       </v-container>
     </v-main>
@@ -15,32 +15,15 @@
 </template>
 
 <script>
-  export default {  
-    data() {
-      return {
-        cards: [
-          {nome: 'Monalisa', Autor: 'DiCaprio', id: 1},
-          {nome: 'Monalisa2', Autor: 'DiCaprio2', id: 2}
-        ]
-      }
-    },
-    created() {
-      //CHAMADA PRO BANCO
-    }
-  }
-</script>
 
-<script>
-import AppCard from './components/AppCard';
+import ViewMenu from './Views/ViewMenu.vue';
 
 export default {
   components: {
-    AppCard,
+    ViewMenu,
   },
-
   data: () => ({
     //
   }),
-
 };
 </script>
