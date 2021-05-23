@@ -5,17 +5,17 @@
     width="324"
     height="332"
     @click="clickCard"
-    :disabled="level.isLevelLocked"
+    :disabled="Level.isLevelLocked"
   >
     <v-img height="260" class="mx-3 mb-2">
       <v-card-title
         class="d-flex justify-space-between text-uppercase font-weight-medium"
       >
-        <span>{{ dificuldade }}</span>
-        <span>{{ level.nome }}</span>
+        <span>{{ Dificuldade }}</span>
+        <span>{{ Level.nome }}</span>
       </v-card-title>
       <div
-        v-if="level.isLevelLocked"
+        v-if="Level.isLevelLocked"
         class="d-flex justify-center align-center"
         style="height:100%;"
       >
@@ -28,11 +28,11 @@
 <script>
 export default {
   props: {
-    level: {
+    Level: {
       type: Object,
       required: true,
     },
-    dificuldade: {
+    Dificuldade: {
       type: String,
       required: true,
     },

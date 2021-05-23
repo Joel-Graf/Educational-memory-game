@@ -28,8 +28,8 @@
         <AppLevelSelectCard
           v-for="level in levels"
           :key="level.id"
-          :level="level"
-          :dificuldade="dificuldade"
+          :Level="level"
+          :Dificuldade="dificuldade"
         />
       </v-row>
     </v-container>
