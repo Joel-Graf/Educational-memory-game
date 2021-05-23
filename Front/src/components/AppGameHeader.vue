@@ -7,8 +7,7 @@
         </v-icon>
         {{ CardPairsRemaining }}/{{ InitialCards / 2 }}
       </div>
-
-      <!-- TODO: Colocar o habitat -->
+      
       <span class="text-h4 font-weight-medium"
         >{{ Level }} - {{ Dificulty.name }}</span
       >
@@ -88,8 +87,7 @@ export default {
     },
     timeRemainingPercentage(timeRemainingPercentage) {
       if (timeRemainingPercentage <= 0) {
-        // TODO: Emitir evento de derrota
-        alert("PERDEU");
+        this.$emit("timeout");
       } else if (timeRemainingPercentage <= 25) {
         this.timerIcon = "mdi-clock-alert-outline";
         this.timerColor = "red";

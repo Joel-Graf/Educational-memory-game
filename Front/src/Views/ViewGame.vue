@@ -2,24 +2,20 @@
   <div>
     <v-overlay :value="!isGameStarted" absolute="true">
       <!-- TODO: Adicionar Loading ao botão enquanto jogo não carrega -->
-      <v-btn
-        v-if="!isGameStarted"
-        @click="isGameStarted = !isGameStarted"
-        color="primary"
-        x-large
-      >
+      <v-btn @click="isGameStarted = !isGameStarted" color="primary" x-large>
         Iniciar Jogo
       </v-btn>
     </v-overlay>
     <AppGameHeader
       :Dificulty="dificulty"
       :Level="level"
-      :TimerEnabled="isGameStarted"
+      :TimerEnabled="isGameStarted && !isGameFinished"
       :CardPairsRemaining="cards.length"
       :InitialCards="dificulty.cardQuantity"
+      @timeout="gameResult = 'Derrota'"
     />
     <v-container fluid>
-      <v-row align="center" justify="space-around">
+      <v-row v-if="!isGameFinished" align="center" justify="space-around">
         <AppGameCard
           v-for="(card, index) in cards"
           :key="card.id"
@@ -31,18 +27,21 @@
           ref="CardsComponents"
         />
       </v-row>
+      <AppGameFinished :GameResult="gameResult" align="center" v-else/>
     </v-container>
   </div>
 </template>
 
 <script>
+import AppGameFinished from "../components/AppGameFinished.vue";
 import AppGameHeader from "../components/AppGameHeader.vue";
 import AppGameCard from "../components/AppGameCard.vue";
 
 export default {
   components: {
-    AppGameCard,
+    AppGameFinished,
     AppGameHeader,
+    AppGameCard,
   },
 
   data() {
@@ -80,6 +79,7 @@ export default {
         },
       ],
       isGameLocked: false,
+      gameResult: "",
       cardsFliped: [],
       isGameStarted: false,
     };
@@ -88,12 +88,14 @@ export default {
     cardPairsRemaining() {
       return this.cards.length / 2;
     },
+    isGameFinished() {
+      return this.gameResult != "";
+    },
   },
   watch: {
     cardPairsRemaining(newCardsRemaning) {
       if (newCardsRemaning == 0) {
-        //TODO: Condição de vitória
-        alert("VENCEU!!");
+        this.gameResult = "Vitória";
       }
     },
   },
@@ -139,10 +141,6 @@ export default {
         this.$delete(this.cards, card1.index);
       }
     },
-  },
-  mounted() {
-    //TODO: Mostrar tela de loading até montar tudo, depois mostrar o botão
-    //TODO: Mostrar Botão de inicio da partida
   },
 };
 </script>
