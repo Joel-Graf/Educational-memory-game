@@ -6,17 +6,17 @@
             </h1>
             <v-btn id="play" outlined color="indigo" @click="togglePlay">Jogar</v-btn><br>
             <Drawer @close="togglePlay" align="left" :closeable="true">
-                <div v-if="openPlay" id="content"><ViewGame/></div>
+                <div v-if="openPlay" class="content"><ViewGame/></div>
             </Drawer>
 
             <v-btn id="ranking" outlined color="indigo" @click="toggleRanking">Ranking</v-btn><br>
             <Drawer @close="toggleRanking" align="left" :closeable="true">
-                <div v-if="openRanking" id="content"><ViewRanking/></div>
+                <div v-if="openRanking" class="content"><ViewRanking/></div>
             </Drawer>
             
             <v-btn id="zoo" outlined color="indigo" @click="toggleZoo">Zoológico</v-btn><br>
             <Drawer @close="toggleZoo" align="left" :closeable="true">
-                <div v-if="openZoo" id="content"><ViewZoo/></div>
+                <div v-if="openZoo" class="content"><ViewZoo/></div>
             </Drawer>
 
             <v-btn id="quit" outlined color="indigo"  @click="quit">Sair</v-btn>
@@ -29,6 +29,7 @@
 import ViewRanking from './ViewRanking.vue';
 import ViewGame from './ViewGame.vue';
 import ViewZoo from './ViewZoo.vue';
+
 export default {
     data() {
         return {
@@ -59,8 +60,7 @@ export default {
 
 <style scoped>
 
-#content{
-    background-color: rgb(243, 242, 242);
+.content{
     height: 40em;
 }
 
