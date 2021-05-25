@@ -1,24 +1,21 @@
 <template>
     <v-container fluid id="container">
-        <div id="main">
-            <h1 id="tittle">
-            Ranking
-            </h1>
-            <Drawer>
-                <div><AppRankingHeader/></div>
-                <div><AppRankingUser/></div>
-                <div><AppRankingOtherUser/></div>
-            </Drawer>
-        </div>
+        <v-responsive class="overflow-y-auto" max-height="400">
+            <div id="main">
+                <h2>{{dataUser.name}}</h2>
+                <v-slider id="slider"
+                    v-model="dataUser.currentPhase"
+                    :label="Fase"
+                    color="#7783CA"
+                    thumb-label="always"
+                ></v-slider>
+                <h2>{{dataUser.averageTime}}</h2>
+            </div>
+        </v-responsive>
     </v-container>
 </template>
 
 <script>
-
-import AppRankingOtherUser from '../components/AppRankingOtherUser';
-import AppRankingUser from '../components/AppRankingUser.vue';
-import AppRankingHeader from '../components/AppRankingHeader.vue';
-
 export default {
     data() {
         return {
@@ -46,9 +43,6 @@ export default {
         }
     },
     components: {
-        AppRankingHeader,
-        AppRankingUser,
-        AppRankingOtherUser,
     },
     methods: {
     }
@@ -64,15 +58,11 @@ export default {
 }
 
 #main{
-   display: table-cell;
-   text-align: center;
-   vertical-align: middle;
-   padding-top: 5em;
-}
-
-.v-btn{
-    width: 150px;
-    margin: 10px;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    font-family: Arial, Helvetica, monospace;
+    color: #8D8D8D;
+    align-items: start;
 }
 
 </style>
