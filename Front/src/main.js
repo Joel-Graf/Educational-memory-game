@@ -5,8 +5,6 @@ import router from "./router/index";
 
 Vue.config.productionTip = false;
 
-Vue.use(Router)
-
 new Vue({
   router,
   vuetify,
