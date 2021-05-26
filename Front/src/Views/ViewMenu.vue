@@ -4,54 +4,30 @@
             <h1 id="tittle">
             Menu
             </h1>
-            <v-btn id="play" outlined color="indigo" @click="togglePlay">Jogar</v-btn><br>
-            <Drawer @close="togglePlay" align="left" :closeable="true">
-                <div v-if="openPlay" class="content"><ViewGame/></div>
-            </Drawer>
-
-            <v-btn id="ranking" outlined color="indigo" @click="toggleRanking">Ranking</v-btn><br>
-            <Drawer @close="toggleRanking" align="left" :closeable="true">
-                <div v-if="openRanking" class="content"><ViewRanking/></div>
-            </Drawer>
             
-            <v-btn id="zoo" outlined color="indigo" @click="toggleZoo">Zoológico</v-btn><br>
-            <Drawer @close="toggleZoo" align="left" :closeable="true">
-                <div v-if="openZoo" class="content"><ViewZoo/></div>
-            </Drawer>
+            <router-link to="/Game">
+                <v-btn id="play" outlined color="indigo">Jogar</v-btn><br>
+            </router-link>
+            
+            <router-link to="/Ranking">
+                <v-btn id="ranking" outlined color="indigo">Ranking</v-btn><br>
+            </router-link>
+            
+            <router-link to="/Zoo">
+                <v-btn id="zoo" outlined color="indigo">Zoológico</v-btn><br>
+            </router-link>
 
-            <v-btn id="quit" outlined color="indigo"  @click="quit">Sair</v-btn>
+            <router-link to="/Login">
+                <v-btn id="quit" outlined color="indigo">Sair</v-btn>
+            </router-link>
         </div>
     </v-container>
 </template>
 
 <script>
-
-import ViewRanking from './ViewRanking.vue';
-import ViewGame from './ViewGame.vue';
-import ViewZoo from './ViewZoo.vue';
-
 export default {
     data() {
         return {
-            openPlay: false,
-            openRanking: false,
-            openZoo: false
-        }
-    },
-    components: {
-        ViewGame,
-        ViewRanking,
-        ViewZoo
-    },
-    methods: {
-        togglePlay() {
-            this.openPlay = !this.openPlay
-        },
-        toggleRanking() {
-            this.openRanking = !this.openRanking
-        },
-        toggleZoo() {
-            this.openZoo = !this.openZoo
         }
     }
 }
