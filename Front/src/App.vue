@@ -1,14 +1,11 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar app  >
-      <v-toolbar-title>Jogo da Memória</v-toolbar-title>
-    </v-app-bar>
 
     <v-main>
       <v-container fluid>
         <v-fade-transition mode="out-in">
           <!-- <router-view></router-view> -->
-          <ViewGame/>
+          <ViewLogin/>
         </v-fade-transition>
       </v-container>
     </v-main>
@@ -33,10 +30,12 @@
 
 <script>
 import ViewGame from './Views/ViewGame.vue';
+import ViewLogin from './Views/ViewLogin.vue';
 
 export default {
   components: {
     ViewGame,
+    ViewLogin
   },
 
   data: () => ({
