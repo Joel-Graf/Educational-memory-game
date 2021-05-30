@@ -4,11 +4,14 @@
             <h1 id="tittle">
             Ranking
             </h1>
-            <Drawer>
-                <div><AppRankingHeader/></div>
-                <div><AppRankingUser/></div>
-                <div><AppRankingOtherUser/></div>
-            </Drawer>
+            <AppRankingHeader/>
+            <AppRankingUser/>
+            <div v-for="dataUser in dataUsers" :key="dataUser.id">
+                <AppRankingOtherUser :id="dataUser.id"  :name="dataUser.name"  :currentPhase="dataUser.currentPhase"  :averageTime="dataUser.averageTime"/>
+            </div>
+            <router-link to="/Menu">
+                <v-btn id="back" outlined color="indigo">Voltar</v-btn>
+            </router-link>
         </div>
     </v-container>
 </template>
@@ -22,12 +25,13 @@ import AppRankingHeader from '../components/AppRankingHeader.vue';
 export default {
     data() {
         return {
+            page: 1,
             dataUsers: [
                 {
                     id: 1,
-                    name: "Nathan Stüber Antunes",
-                    currentPhase: 5,
-                    averageTime: 40.3
+                    name: "Ciclano Jerun",
+                    currentPhase: 6,
+                    averageTime: 53.9
                 },
                 {
                     id: 2,
@@ -41,7 +45,48 @@ export default {
                     currentPhase: 1,
                     averageTime: 10.0
                 },
-                
+                {
+                    id: 4,
+                    name: "Beltrano ano",
+                    currentPhase: 1,
+                    averageTime: 10.0
+                },
+                {
+                    id: 5,
+                    name: "Beltrano ano",
+                    currentPhase: 1,
+                    averageTime: 10.0
+                },
+                {
+                    id: 6,
+                    name: "Beltrano ano",
+                    currentPhase: 1,
+                    averageTime: 10.0
+                },
+                {
+                    id: 7,
+                    name: "Beltrano ano",
+                    currentPhase: 1,
+                    averageTime: 10.0
+                },
+                {
+                    id: 8,
+                    name: "Beltrano ano",
+                    currentPhase: 1,
+                    averageTime: 10.0
+                },
+                {
+                    id: 9,
+                    name: "Beltrano ano",
+                    currentPhase: 1,
+                    averageTime: 10.0
+                },
+                {
+                    id: 10,
+                    name: "Beltrano ano",
+                    currentPhase: 1,
+                    averageTime: 10.0
+                },
             ]
         }
     },
@@ -73,6 +118,10 @@ export default {
 .v-btn{
     width: 150px;
     margin: 10px;
+}
+
+#back{
+    margin: 4em;
 }
 
 </style>

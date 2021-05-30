@@ -7,6 +7,7 @@
                 :label="Fase"
                 color="#000000"
                 thumb-label="always"
+                max="20"
             ></v-slider>
             <h2>{{dataUser.averageTime}}</h2>
         </div>
@@ -22,7 +23,7 @@ export default {
             dataUser: {
                 name: "Nathan Stüber Antunes",
                 currentPhase: 5,
-                averageTime: 40.3
+                averageTime: 40.3,
             }
             
         }

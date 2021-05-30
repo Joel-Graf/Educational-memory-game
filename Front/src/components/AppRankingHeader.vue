@@ -25,10 +25,9 @@ export default {
 #mainHeader{
     display: grid;
     grid-template-columns: 33% 33% 33%;
-    border-bottom: solid 2px #7783CA;
     font-family: Arial, Helvetica, monospace;
     color: #7783CA;
     align-items: start;
-    padding: 40px 0px 40px 0px;
+    padding: 40px 0px 20px 0px;
 }
 </style>
