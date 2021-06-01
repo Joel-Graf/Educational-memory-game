@@ -19,7 +19,7 @@
 
             <div class="footerLinks"> 
                <div> <a> Esqueci minha senha </a> </div>
-               <div style="margin-left:45vh"> <a> Cadastrar </a> </div> 
+               <div style="margin-left:52vh"> <a> Cadastrar </a> </div> 
             </div>
         </div>
 
@@ -73,7 +73,7 @@
       display: flex;
       justify-content: center;
       box-shadow: 1px 1px 10px 1.3px #0c32585b;
-      height: 95vh;
+      height: 93vh;
       border-radius:10px
     }
 </style>
