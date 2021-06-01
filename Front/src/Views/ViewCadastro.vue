@@ -4,6 +4,7 @@
       
      <div class="interfaceForms"> 
        <h3 style="fontSize:5vh; color:rgba(20, 15, 40, 0.87)"> Login </h3>
+       <h4 style="fontSize:3vh; color:rgba(108, 108, 108)"> Seja bem vindo! Faça seu cadastro logo a baixo! </h4>
 
         <div class="forms"> 
             <v-text-field

@@ -19,7 +19,7 @@
 
             <div class="footerLinks"> 
                <div> <a> Esqueci minha senha </a> </div>
-               <div href="ViewCadastro.vue" style="margin-left:52vh"> <a> Cadastrar </a> </div> 
+               <div style="margin-left:52vh"> <a> Cadastrar </a> </div> 
             </div>
         </div>
 
