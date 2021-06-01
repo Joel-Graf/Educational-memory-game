@@ -1,8 +1,5 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar app>
-      <v-toolbar-title>Jogo da Memória</v-toolbar-title>
-    </v-app-bar>
 
     <v-main>
       <v-container fluid>

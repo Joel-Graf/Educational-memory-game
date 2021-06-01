@@ -1,13 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import ViewAnimal from "../views/ViewAnimal.vue";
-import ViewGame from "../views/ViewGame.vue";
-import ViewLevelSelect from "../views/ViewLevelSelect.vue";
-import ViewLogin from "../views/ViewLogin.vue";
-import ViewMenu from "../views/ViewMenu.vue";
-import ViewRanking from "../views/ViewRanking.vue";
-import ViewRegister from "../views/ViewRegister.vue";
-import ViewZoo from "../views/ViewZoo.vue";
+import ViewAnimal from "../Views/ViewAnimal.vue";
+import ViewGame from "../Views/ViewGame.vue";
+import ViewLevelSelect from "../Views/ViewLevelSelect.vue";
+import ViewLogin from "../Views/ViewLogin.vue";
+import ViewMenu from "../Views/ViewMenu.vue";
+import ViewRanking from "../Views/ViewRanking.vue";
+import ViewRegister from "../Views/ViewRegister.vue";
+import ViewZoo from "../Views/ViewZoo.vue";
 
 Vue.use(VueRouter);
 
