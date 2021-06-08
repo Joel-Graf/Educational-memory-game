@@ -13,15 +13,18 @@
       <v-icon class="mr-4">mdi-restart</v-icon>
       {{ this.GameResult == "Vitória" ? "Jogar Novamente" : "Reiniciar" }}
     </v-btn>
-    <v-btn
-      @click="exitGame"
-      class="my-5"
-      color="secondary"
-      large
-      min-width="10%"
-    >
-      Sair
-    </v-btn>
+    <router-link :to="exit">
+      <v-btn
+        @click="exitGame"
+        class="my-5"
+        color="secondary"
+        large
+        min-width="10%"
+      >
+      <v-icon left dark>mdi-arrow-left</v-icon>
+        Sair
+      </v-btn>
+    </router-link>
   </div>
 </template>
 
@@ -34,7 +37,9 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      exit: "/Menu"
+    };
   },
   methods: {
     restartGame() {

@@ -29,6 +29,7 @@
             class="mr-4"
             @click="validate"
           >
+          <v-icon left dark>mdi-login</v-icon>
             Logar
          </v-btn>
 
