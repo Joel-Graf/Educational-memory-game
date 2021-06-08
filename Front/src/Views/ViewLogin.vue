@@ -19,7 +19,10 @@
 
             <div class="footerLinks"> 
                <div> <a> Esqueci minha senha </a> </div>
+               <router-link to="/Register">
                <div style="margin-left:52vh"> <a> Cadastrar </a> </div> 
+               </router-link>
+
             </div>
         </div>
 
