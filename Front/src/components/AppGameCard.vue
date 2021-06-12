@@ -2,26 +2,29 @@
   <v-card
     elevation="5"
     class="mx-auto my-6"
-    width="324"
-    height="332"
+    :width="width"
+    :height="height"
     @click="clickCard"
   >
     <div v-if="isFliped">
-      <v-card-title
-        class="d-flex justify-space-between text-uppercase font-weight-medium"
-      >
-        <span>({{ card.id }})</span>
-        <span>{{ card.name }}</span>
-      </v-card-title>
-
       <v-img
-        height="260"
-        class="mx-3 mb-2"
+        :height="height-2"
+        :width="width-2"
+        class="mx-auto my-auto d-flex justify-center align-center"
         :src="require(`@/assets/${card.image}`)"
-      ></v-img>
+      >
+        <div style="background-color:rgba(0,0,0,0.2)">
+          <p class='text-h6 text-center' style="color:white">{{ card.name.toUpperCase() }}</p>
+        </div>
+      </v-img>
     </div>
     <div v-else>
-      <!-- TODO: Adicionar Fundo da carta -->
+      <v-img
+        :height="height-2"
+        :width="width-2"
+        class="mx-auto my-auto"
+        :src="require('@/assets/Imagens/Oceano/oceano.jpg')"
+      ></v-img>
     </div>
   </v-card>
 </template>
@@ -45,6 +48,14 @@ export default {
       type: Boolean,
       required: true,
     },
+    height: {
+      type: Number,
+      required: true,
+    },
+    width: {
+      type: Number,
+      required: true,
+    }
   },
   data() {
     return {
@@ -53,11 +64,6 @@ export default {
     };
   },
   methods: {
-    playSound() {
-      //TODO: Implementar bloqueio para SPAM
-      var audio = new Audio(require(`@/assets/${this.card.sound}`));
-      audio.play();
-    },
     clickCard() {
       if (this.isFliped || this.IsGameLocked) {
         //TODO: Carta já virada ou jogo trancado, rodar animação de erro

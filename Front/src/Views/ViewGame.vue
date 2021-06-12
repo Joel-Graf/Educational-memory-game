@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-overlay :value="!isGameStarted" absolute="true">
-      <!-- TODO: Adicionar Loading ao botão enquanto jogo não carrega -->
       <v-btn @click="isGameStarted = !isGameStarted" color="primary" x-large>
         Iniciar Jogo
       </v-btn>
@@ -20,6 +19,8 @@
           v-for="(card, index) in cards"
           :key="card.id"
           :Card="card"
+          :height="324"
+          :width="332"
           :Index="index"
           :CardsFliped="cardsFliped"
           :IsGameLocked="isGameLocked"
@@ -77,6 +78,7 @@ export default {
           image: "gato-frente.jpg",
           sound: "gato-som.mp3",
         },
+
       ],
       isGameLocked: false,
       gameResult: "",
