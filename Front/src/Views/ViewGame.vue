@@ -28,7 +28,7 @@
           ref="CardsComponents"
         />
       </v-row>
-      <AppGameFinished :GameResult="gameResult" align="center" v-else/>
+      <AppGameFinished :GameResult="gameResult" :isGameRestart="isGameRestart" align="center" v-else/>
     </v-container>
   </div>
 </template>
@@ -102,6 +102,10 @@ export default {
     },
   },
   methods: {
+    isGameRestart(){
+     this.isGameStarted = true;
+     this.isGameFinished = false;
+    },
     handleFlipCard(cardObject) {
       //Verifica se o jogo está trancado (Existe duas cartas viradas)
       if (!this.isGameLocked) {

@@ -35,6 +35,12 @@ export default {
       type: String,
       required: true,
     },
+    isGameRestart: {
+      type:Boolean,
+      default: function(){
+        return {isGameRestart: true}
+      }
+    },
   },
   data() {
     return {
@@ -43,7 +49,7 @@ export default {
   },
   methods: {
     restartGame() {
-      //TODO: Reiniciar o nível jogado
+      this.isGameRestart();
     },
     exitGame() {
       //TODO: Redirecionar para tela de Seleção de Level
