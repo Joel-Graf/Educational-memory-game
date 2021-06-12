@@ -7,7 +7,8 @@
       <AppRankingOtherUser />
       <router-link to="/Menu">
         <v-btn class="my-5" color="secondary" large min-width="10%">
-            <v-icon left dark>mdi-arrow-left</v-icon>Voltar</v-btn>
+            <v-icon left dark>mdi-arrow-left</v-icon>Voltar
+        </v-btn>
       </router-link>
     </div>
   </v-container>
