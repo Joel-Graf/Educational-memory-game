@@ -1,84 +1,70 @@
 <template>
   <v-container>
-   <div class="interface"> 
-      
-     <div class="interfaceForms"> 
-       <h3 style="fontSize:5vh; color:rgba(20, 15, 40, 0.87)"> Login </h3>
+    <div class="interface">
+      <div class="interfaceForms">
+        <h3 style="font-size: 5vh; color: rgba(20, 15, 40, 0.87)">Login</h3>
 
-        <div class="forms"> 
-            <v-text-field
-                label="Usuário"
-                placeholder="maria@gmail.com"
-                outlined
-            ></v-text-field>
+        <div class="forms">
+          <v-text-field
+            label="Usuário"
+            placeholder="maria@gmail.com"
+            outlined
+          ></v-text-field>
 
-            <v-text-field
-                label="Senha"
-                outlined
-            ></v-text-field>
+          <v-text-field label="Senha" outlined></v-text-field>
 
-            <div class="footerLinks"> 
-               <div> <a> Esqueci minha senha </a> </div>
-               <router-link to="/Register">
-               <div style="margin-left:52vh"> <a> Cadastrar </a> </div> 
-               </router-link>
-
-            </div>
+          <div class="footerLinks">
+            <div><a> Esqueci minha senha </a></div>
+            <router-link to="/Register">
+              <div style="margin-left: 45vh"><a> Cadastrar </a></div>
+            </router-link>
+          </div>
         </div>
-
-         <v-btn
-             x-large
-            color="primary"
-            class="mr-4"
-            @click="validate"
-          >
-          <v-icon left dark>mdi-login</v-icon>
+        <router-link to="/Menu">
+          <v-btn x-large color="primary" class="mr-4" @click="validate">
+            <v-icon left dark>mdi-login</v-icon>
             Logar
-         </v-btn>
-
+          </v-btn>
+        </router-link>
       </div>
     </div>
-
   </v-container>
 </template>
 
 <script>
-
-  export default {  
-    data() {
-      return {
-        user: "",
-        password:""
-      }
-    }
-  }
+export default {
+  data() {
+    return {
+      user: "",
+      password: "",
+    };
+  },
+};
 </script>
 
 <style >
+.footerLinks {
+  display: flex;
+  margin-top: -15px;
+  width: 100%;
+}
 
-  .footerLinks{
-    display: flex;
-    margin-top: -15px;
-    width: 100%;
-    
-  }
+.forms {
+  margin: 7vh 0px;
+}
 
-    .forms{
-      margin:7vh 0px;
-    }
+.interfaceForms {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
 
-    .interfaceForms{    
-      width: 50%;
-      margin: auto;
-      text-align: center;
-    }
-
-    .interface{
-      display: flex;
-      justify-content: center;
-      box-shadow: 1px 1px 10px 1.3px #0c32585b;
-      height: 93vh;
-      border-radius:10px
-    }
+.interface {
+  display: flex;
+  justify-content: center;
+  box-shadow: 1px 1px 10px 1.3px #0c32585b;
+  height: 93vh;
+  border-radius: 10px;
+}
 </style>
 

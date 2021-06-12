@@ -29,6 +29,7 @@
 
         </div>
 
+      <router-link to="/Login">
          <v-btn
              x-large
             color="primary"
@@ -37,6 +38,7 @@
           >
             Cadastrar
          </v-btn>
+      </router-link>
 
       </div>
     </div>
