@@ -76,13 +76,13 @@ export default {
       }
     },
     timeRemaining: {
-      // handler(value) {
-      //   if (value > 0 && this.TimerEnabled) {
-      //     setTimeout(() => {
-      //       this.timeRemaining--;
-      //     }, 1000);
-      //   }
-      // },
+      handler(value) {
+        if (value > 0 && this.TimerEnabled) {
+          setTimeout(() => {
+            this.timeRemaining--;
+          }, 1000);
+        }
+      },
       immediate: true,
     },
     timeRemainingPercentage(timeRemainingPercentage) {

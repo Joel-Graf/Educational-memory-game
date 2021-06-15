@@ -15,7 +15,6 @@
     </v-btn>
     <router-link :to="exit">
       <v-btn
-        @click="exitGame"
         class="my-5"
         color="secondary"
         large
@@ -50,10 +49,7 @@ export default {
   methods: {
     restartGame() {
       this.isGameRestart();
-    },
-    exitGame() {
-      //TODO: Redirecionar para tela de Seleção de Level
-    },
+    }
   },
 };
 </script>
