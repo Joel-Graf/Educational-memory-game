@@ -6,16 +6,16 @@ INSERT INTO professor (nome, usuario, senha) VALUES
   ('professor5', 'professor5', 'senha5'),
   ('professor6', 'professor6', 'senha6');
 
-INSERT INTO aluno (id_professor, nome, total_pontos, fase) VALUES
-  (1, 'aluno1', 1, 1),
-  (1, 'aluno2', 3, 1),
-  (2, 'aluno3', 4, 1),
-  (2, 'aluno4', 0, 1),
-  (3, 'aluno5', 3, 1),
-  (6, 'aluno6', 0, 1),
-  (5, 'aluno7', 0, 1),
-  (6, 'aluno8', 0, 1),
-  (6, 'aluno9', 10, 1);
+INSERT INTO aluno (id_professor, nome, usuario, senha, total_pontos, fase) VALUES
+  (1, 'aluno1', 'professor1', 'senha1', 1, 1),
+  (1, 'aluno2', 'professor2', 'senha2', 3, 1),
+  (2, 'aluno3', 'professor3', 'senha3', 4, 1),
+  (2, 'aluno4', 'professor4', 'senha4', 0, 1),
+  (3, 'aluno5', 'professor5', 'senha5', 3, 1),
+  (6, 'aluno6', 'professor7', 'senha7', 0, 1),
+  (5, 'aluno7', 'professor8', 'senha8', 0, 1),
+  (6, 'aluno8', 'professor9', 'senha9', 0, 1),
+  (6, 'aluno9', 'professor10', 'senha10', 10, 1);
 
 INSERT INTO bioma (nome) VALUES
   ('Oceano'),

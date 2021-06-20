@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS aluno (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   id_professor INTEGER,
   nome VARCHAR(255) UNIQUE,
+  usuario VARCHAR(255) UNIQUE,
+  senha VARCHAR(255),
   total_pontos INTEGER DEFAULT 0,
   fase INTEGER DEFAULT 1,
   CONSTRAINT fk_professor_aluno FOREIGN KEY(id_professor) REFERENCES professor(id)
