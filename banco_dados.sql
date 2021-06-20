@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS aluno (
   id_professor INTEGER,
   nome VARCHAR(255) UNIQUE,
   total_pontos INTEGER DEFAULT 0,
+  fase INTEGER DEFAULT 1,
   CONSTRAINT fk_professor_aluno FOREIGN KEY(id_professor) REFERENCES professor(id)
 );
 CREATE TABLE IF NOT EXISTS bioma (
