@@ -5,7 +5,7 @@
             Menu
             </h1>
             
-            <router-link to="/Game">
+            <router-link to="/LevelSelect">
                 <v-btn id="play" outlined color="indigo"><v-icon left dark>mdi-play</v-icon>Jogar</v-btn><br>
             </router-link>
             
@@ -13,9 +13,9 @@
                 <v-btn id="ranking" outlined color="indigo"><v-icon left dark>mdi-chart-areaspline</v-icon>Ranking</v-btn><br>
             </router-link>
             
-            <router-link to="/Zoo">
+          <!--  <router-link to="/Zoo">
                 <v-btn id="zoo" outlined color="indigo"><v-icon left dark>mdi-paw</v-icon>Zoológico</v-btn><br>
-            </router-link>
+            </router-link> -->
 
             <router-link to="/Login">
                 <v-btn id="quit" outlined color="indigo"><v-icon left dark>mdi-logout</v-icon>Sair</v-btn>
