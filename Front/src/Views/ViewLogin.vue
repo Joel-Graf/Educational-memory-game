@@ -9,9 +9,10 @@
             label="Usuário"
             placeholder="maria@gmail.com"
             outlined
+            v-model="user.mail"
           ></v-text-field>
 
-          <v-text-field label="Senha" outlined></v-text-field>
+          <v-text-field v-model="user.password"  label="Senha" outlined type="password"></v-text-field>
 
           <div class="footerLinks">
             <div><a> Esqueci minha senha </a></div>
@@ -20,7 +21,7 @@
             </router-link>
           </div>
         </div>
-        <router-link to="/Menu">
+        <router-link :to="`${this.route}`">
           <v-btn x-large color="primary" class="mr-4" @click="validate">
             <v-icon left dark>mdi-login</v-icon>
             Logar
@@ -35,10 +36,22 @@
 export default {
   data() {
     return {
-      user: "",
-      password: "",
-    };
+      user:{
+        mail: "",
+        password: ""
+      },
+      route:''
+    }
   },
+   methods: {
+     validate: function(){
+       if(this.user.mail == "gustavo" && this.user.password == "123")
+        this.route = '/Menu'
+     },
+     passwordState: function(){
+       console.log("opa tudo bom")
+     }
+   }
 };
 </script>
 
@@ -47,6 +60,7 @@ export default {
   display: flex;
   margin-top: -15px;
   width: 100%;
+  text-decoration: none;
 }
 
 .forms {

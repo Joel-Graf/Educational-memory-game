@@ -1,18 +1,21 @@
 <template>
   <v-container fluid id="container">
+    <router-link to="/Menu">
+        <v-btn style="position:absolute" left color="secondary" medium min-width="10%">
+            <v-icon left dark>mdi-arrow-left</v-icon>Voltar
+        </v-btn>
+    </router-link>
+
     <div class="d-flex flex-column align-center">
       <h1>Ranking</h1>
       <AppRankingHeader />
       <AppRankingUser />
       <AppRankingOtherUser />
-      <router-link to="/Menu">
-        <v-btn class="my-5" color="secondary" large min-width="10%">
-            <v-icon left dark>mdi-arrow-left</v-icon>Voltar
-        </v-btn>
-      </router-link>
     </div>
   </v-container>
 </template>
+
+
 
 <script>
 import AppRankingOtherUser from "../components/AppRankingOtherUser";
@@ -31,3 +34,7 @@ export default {
   },
 };
 </script>
+
+<style> 
+
+</style>

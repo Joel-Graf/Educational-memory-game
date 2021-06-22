@@ -1,10 +1,17 @@
 <template>
   <div>
     <v-banner>
+      <router-link to="/Menu">
+        <v-btn style="position:absolute" class="ma-2" color="dark darken-2" dark>
+          <v-icon dark left> mdi-arrow-left </v-icon>Back
+        </v-btn>
+      </router-link>
+
       <div class="d-flex justify-center align-center">
         <span class="text-h5 mr-5 font-weight-medium"
-          >Seleciona a fase e dificuldade:</span
-        >
+          >Seleciona a fase e dificuldade:
+        </span>
+        
         <v-btn-toggle
           class="d-flex justify-center"
           rounded
@@ -14,9 +21,7 @@
           <v-btn value="Fácil" active-class="success white--text">
             Fácil
           </v-btn>
-          <v-btn value="Médio" active-class="amber white--text">
-            Médio
-          </v-btn>
+          <v-btn value="Médio" active-class="amber white--text"> Médio </v-btn>
           <v-btn value="Difícil" active-class="red white--text">
             Difícil
           </v-btn>
@@ -48,10 +53,10 @@ export default {
     return {
       dificuldade: "facil",
       levels: [
-        { id: 0, nome: "Floresta", imagem: "", isLevelLocked: true },
-        { id: 1, nome: "Deserto", imagem: "", isLevelLocked: false },
-        { id: 2, nome: "Mar", imagem: "", isLevelLocked: false },
-        { id: 3, nome: "Minecraft", imagem: "", isLevelLocked: false },
+        { id: 0, nome: "Floresta", imagem: "", isLevelLocked: false },
+        { id: 1, nome: "Deserto", imagem: "", isLevelLocked: true },
+        { id: 2, nome: "Mar", imagem: "", isLevelLocked: true },
+        { id: 3, nome: "Minecraft", imagem: "", isLevelLocked: true },
       ],
     };
   },
