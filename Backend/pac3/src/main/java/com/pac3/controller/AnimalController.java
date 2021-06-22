@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pac3.model.Animal;
-import com.pac3.model.Professor;
 import com.pac3.repository.AnimalRepository;
 
 @RestController
@@ -33,24 +32,23 @@ public class AnimalController {
 
 	@GetMapping("/professores/{id}")
 	Animal one(@PathVariable Long id) {
-
 		return animalRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
 	}
 
 	@PutMapping("/professores")
-	Professor createProfessor(@RequestBody Animal professor) {
-		return animalRepository.save(professor);
+	Animal createProfessor(@RequestBody Animal animal) {
+		return animalRepository.save(animal);
 	}
 	
 	@PutMapping("/professores/{id}")
-	Professor replaceProfessor(@RequestBody Professor newProfessor, @PathVariable Long id) {
+	Animal replaceProfessor(@RequestBody Animal newAnimal, @PathVariable Long id) {
 
-		return animalRepository.findById(id).map(Professor -> {
-			Professor.setNome(newProfessor.getNome());
-			return animalRepository.save(Professor);
+		return animalRepository.findById(id).map(Animal -> {
+			Animal.setNome(newAnimal.getNome());
+			return animalRepository.save(Animal);
 		}).orElseGet(() -> {
-			newProfessor.setId(id);
-			return animalRepository.save(newProfessor);
+			newAnimal.setId(id);
+			return animalRepository.save(newAnimal);
 		});
 	}
 
