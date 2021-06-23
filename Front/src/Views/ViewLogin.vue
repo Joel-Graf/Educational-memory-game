@@ -45,6 +45,7 @@ export default {
   },
    methods: {
      validate: function(){
+      //  this.$store.state.count
        if(this.user.mail == "gustavo" && this.user.password == "123")
         this.route = '/Menu'
      },
