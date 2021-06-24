@@ -21,7 +21,7 @@
             </router-link>
           </div>
         </div>
-        <router-link :to="`${this.route}`">
+        <router-link to="/Menu">
           <v-btn x-large color="primary" class="mr-4" @click="validate">
             <v-icon left dark>mdi-login</v-icon>
             Logar
@@ -43,16 +43,28 @@ export default {
       route:''
     }
   },
-   methods: {
-     validate: function(){
-      //  this.$store.state.count
-       if(this.user.mail == "gustavo" && this.user.password == "123")
-        this.route = '/Menu'
-     },
-     passwordState: function(){
-       console.log("opa tudo bom")
-     }
-   }
+  methods: {
+    validate: function(){
+      /*
+      FIXME: Modelo de requisição
+      fetch('/login')
+      .then((response) => {
+        if(response.status !== 200) {
+          console.log("Request Error! Status: "+response.status)
+          return
+        } 
+        response.json().then((data) => {
+          console.log(data)
+        })
+      })
+      .catch((error) => {
+        console.log("Fetch Error!")
+      })
+      */
+      if(this.user.mail == "gustavo" && this.user.password == "123")
+        this.$store.state.logged = true
+    },
+  }
 };
 </script>
 

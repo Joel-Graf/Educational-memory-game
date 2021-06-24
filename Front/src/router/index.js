@@ -8,6 +8,7 @@ import ViewMenu from "../views/ViewMenu.vue";
 import ViewRanking from "../views/ViewRanking.vue";
 import ViewRegister from "../views/ViewRegister.vue";
 import ViewZoo from "../views/ViewZoo.vue";
+import store from "../store/store.js"
 
 Vue.use(VueRouter);
 
@@ -61,5 +62,10 @@ const routes = [
 const router = new VueRouter({
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'Login' && !store.state.logged) next({ name: 'Login' })
+  else next()
+})
 
 export default router;
