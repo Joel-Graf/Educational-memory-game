@@ -22,6 +22,7 @@ public class Bioma {
 	@OneToMany(mappedBy="bioma")
 	private Set<Partida> partidas;
 
+	@OneToMany(mappedBy="bioma")
 	private Set<Animal> animais;
 	
 }
