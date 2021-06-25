@@ -21,7 +21,11 @@ public class RankingController {
 
 	@GetMapping("/ranking")
 	List<Aluno> obterAlunos() {
-		return alunoRepository.findAll();
+		try {
+			return alunoRepository.findAll();
+		} catch (Exception e) {
+			return alunoRepository.findAll();
+		}
 	}
 	
 }
