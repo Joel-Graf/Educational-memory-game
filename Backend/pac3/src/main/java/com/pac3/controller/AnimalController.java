@@ -25,22 +25,22 @@ public class AnimalController {
 		this.animalRepository = animalRepository;
 	}
 
-	@GetMapping("/professores")
+	@GetMapping("/animal")
 	List<Animal> all() {
 		return animalRepository.findAll();
 	}
 
-	@GetMapping("/professores/{id}")
+	@GetMapping("/animal/{id}")
 	Animal one(@PathVariable Long id) {
 		return animalRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
 	}
 
-	@PutMapping("/professores")
+	@PutMapping("/animal")
 	Animal createProfessor(@RequestBody Animal animal) {
 		return animalRepository.save(animal);
 	}
 	
-	@PutMapping("/professores/{id}")
+	@PutMapping("/animal/{id}")
 	Animal replaceProfessor(@RequestBody Animal newAnimal, @PathVariable Long id) {
 
 		return animalRepository.findById(id).map(Animal -> {
@@ -52,7 +52,7 @@ public class AnimalController {
 		});
 	}
 
-	@DeleteMapping("/professores/{id}")
+	@DeleteMapping("/animal/{id}")
 	void deleteProfessor(@PathVariable Long id) {
 		animalRepository.deleteById(id);
 	}

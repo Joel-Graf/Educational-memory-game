@@ -24,12 +24,12 @@ public class ProfessorController {
 		this.professorRepository = professorRepository;
 	}
 
-	@PostMapping("/professores")
+	@PostMapping("/professor")
 	List<Professor> all() {
 		return professorRepository.findAll();
 	}
 
-	@PostMapping("/professores/{usuario}/{senha}")
+	@PostMapping("/professor/{usuario}/{senha}")
 	Log logar(@PathVariable String usuario, @PathVariable String senha) {
 		try {
 			professorRepository.findByUsuario(usuario);
@@ -45,7 +45,7 @@ public class ProfessorController {
 		return new Log(true, "Parabéns, você esta logado!");
 	}
 	
-	@PutMapping("/professores/{usuario}/{senha}")
+	@PutMapping("/professor/{usuario}/{senha}")
 	Object cadastrar(@RequestBody Professor newProfessor, String usuario, @PathVariable String senha) {
 
 		Professor professor = new Professor();
@@ -59,7 +59,7 @@ public class ProfessorController {
 		}
 	}
 
-	@DeleteMapping("/professores/{id}")
+	@DeleteMapping("/professor/{id}")
 	void deleteProfessor(@PathVariable Long id) {
 		professorRepository.deleteById(id);
 	}
