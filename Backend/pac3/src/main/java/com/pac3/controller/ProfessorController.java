@@ -1,23 +1,20 @@
 package com.pac3.controller;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pac3.model.Log;
 import com.pac3.model.Professor;
 import com.pac3.repository.ProfessorRepository;
 
+@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 @RestController
 @RequestMapping("/pac3")
 public class ProfessorController {
@@ -28,7 +25,7 @@ public class ProfessorController {
 		this.professorRepository = professorRepository;
 	}
 
-	@GetMapping("/professor/todos")
+	@PostMapping("/professor/todos")
 	List<Professor> all() {
 		return professorRepository.findAll();
 	}
@@ -36,19 +33,14 @@ public class ProfessorController {
 	@PostMapping("/professor/logar")
 	Object logar(@RequestBody Professor newProfessor) {
 		
-		try {
-			professorRepository.findByUsuario(newProfessor.getUsuario());
-		} catch (Exception e) {
-			return new Log(false, "O seu usuário está errado!");
+		if(professorRepository.findByUsuario(newProfessor.getUsuario()) != null) {
+			return new Log(true, "Usuário logado!");
+		}
+		if(professorRepository.findBySenha(newProfessor.getSenha()) != null) {
+			return new Log(true, "Usuário logado!");
 		}
 		
-		try {
-			professorRepository.findBySenha(newProfessor.getSenha());
-		} catch (Exception e) {
-			return new Log(false, "Sua senha está errado!");
-		}
-		
-		return new Log(true, "Usuário logado!");
+		return new Log(false, "Usuário ou senha inválido!");
 	}
 	
 	@PostMapping("/professor/cadastrar")
