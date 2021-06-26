@@ -5,13 +5,13 @@ import lombok.Data;
 @Data
 public class Log{
 
-	private boolean retorno;
+	private boolean status;
 	private String descricao;
 	
 	public Log() {}
 	
-	public Log(boolean retorno, String descricao) {
-		this.retorno=retorno;
+	public Log(boolean status, String descricao) {
+		this.status=status;
 		this.descricao=descricao;
 	}
 	
