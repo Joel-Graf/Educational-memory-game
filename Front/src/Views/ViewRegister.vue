@@ -8,25 +8,22 @@
 
         <div class="forms"> 
             <v-text-field
-                label="Usuário"
+                label="Nome"
+                v-model="nome"
                 outlined
             ></v-text-field>
 
             <v-text-field
-                label="E-mail"
+                label="Usuário"
+                v-model="usuario"
                 outlined
             ></v-text-field>
 
             <v-text-field
                 label="Senha"
+                v-model="senha"
                 outlined
             ></v-text-field>
-
-            <v-text-field
-                label="Confirmar Senha"
-                outlined
-            ></v-text-field>
-
         </div>
 
       <router-link to="/Login">
@@ -51,9 +48,39 @@
   export default {  
     data() {
       return {
-        user: "",
-        password:""
+        nome: "",
+        usuario: "",
+        senha:"",
       }
+    },
+    methods: {
+      validate: function(){
+        var opts = {
+          nome: this.nome,
+          usuario: this.usuario,
+          senha: this.senha,
+        }
+        fetch('http://localhost:8090/pac3/professor/cadastrar', {
+          "method": 'POST',
+          "headers": {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          "body": JSON.stringify(opts)
+        })
+        .then((response) => {
+          if(response.status !== 200) {
+            console.log("Request Error! Status: "+response.status)
+            return
+          } 
+          response.json().then((data) => {
+            console.log(data)
+          })
+        })
+        .catch((error) => {
+          console.log("Fetch Error! "+error)
+        })
+      },
     }
   }
 </script>
