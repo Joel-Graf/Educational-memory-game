@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pac3.model.AlunoModel;
 
 import lombok.Getter;
@@ -33,6 +36,7 @@ public class Aluno {
 	//private Long tempoMedioFase;
  
     @ManyToOne @JoinColumn(name = "id_professor")
+    @JsonManagedReference
 	private Professor professor;
 	
 	//@OneToMany(mappedBy="aluno")

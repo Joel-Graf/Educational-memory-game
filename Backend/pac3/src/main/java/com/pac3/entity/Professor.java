@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pac3.model.AlunoModel;
 
@@ -29,6 +30,7 @@ public class Professor {
 	private String senha;
 
 	@OneToMany(mappedBy = "professor")
+    @JsonBackReference
 	private List<Aluno> alunos;
 	
 
