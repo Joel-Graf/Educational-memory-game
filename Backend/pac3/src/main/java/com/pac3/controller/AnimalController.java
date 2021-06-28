@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pac3.model.Animal;
+import com.pac3.entity.Animal;
 import com.pac3.repository.AnimalRepository;
 
 @RestController

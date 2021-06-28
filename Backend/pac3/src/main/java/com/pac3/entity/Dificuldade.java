@@ -1,4 +1,4 @@
-package com.pac3.model;
+package com.pac3.entity;
 
 import java.util.Set;
 
@@ -12,17 +12,15 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Bioma {
+public class Dificuldade {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
+	private Long numeroCartas;
+	private Long tempoLimite;
 
-	@OneToMany(mappedBy="bioma")
+	@OneToMany(mappedBy="dificuldade")
 	private Set<Partida> partidas;
-
-	@OneToMany(mappedBy="bioma")
-	private Set<Animal> animais;
 	
 }

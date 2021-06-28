@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pac3.entity.Aluno;
-import com.pac3.entity.Professor;
 import com.pac3.model.AlunoModel;
 import com.pac3.model.LogModel;
 import com.pac3.repository.AlunoRepository;
@@ -19,23 +18,23 @@ import com.pac3.repository.ProfessorRepository;
 @CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 @RestController
 @RequestMapping("/pac3")
-public class ProfessorController {
+public class AlunoController {
 
 	private final AlunoRepository alunoRepository;
 	private final ProfessorRepository professorRepository;
 	
-	ProfessorController(AlunoRepository alunoRepository, ProfessorRepository professorRepository) {
+	AlunoController(AlunoRepository alunoRepository, ProfessorRepository professorRepository) {
 		this.alunoRepository = alunoRepository;
 		this.professorRepository = professorRepository;
 	}
 
-	@PostMapping("/professor/login")
-	 public ResponseEntity<?> logar(@RequestBody Professor newProfessor) {
+	@PostMapping("/aluno/login")
+	 public ResponseEntity<?> logar(@RequestBody Aluno newAluno) {
 
-		Professor professor = new Professor();
+		Aluno aluno = new Aluno();
 		try {
-			professor = professorRepository.findByUsuario(newProfessor.getUsuario());
-			if (professor.getSenha().equals(newProfessor.getSenha())) {
+			aluno = alunoRepository.findByUsuario(newAluno.getUsuario());
+			if (aluno.getSenha().equals(newAluno.getSenha())) {
 				return new ResponseEntity<>(true, HttpStatus.ACCEPTED);
 			} else {
 				return new ResponseEntity<>(false, HttpStatus.FORBIDDEN);
@@ -51,13 +50,13 @@ public class ProfessorController {
 		
 	}
 	
-	@PostMapping("/professor/cadastrar")
-	public ResponseEntity<?> cadastrar(@RequestBody AlunoModel newProfessor) {
+	@PostMapping("/aluno/cadastrar")
+	public ResponseEntity<?> cadastrar(@RequestBody AlunoModel newAluno) {
 		
-		if(professorRepository.findByUsuario(newProfessor.getUsuario()) != null) return new ResponseEntity<>(false, HttpStatus.LOCKED);
-		if(professorRepository.findByNome(newProfessor.getNome()) != null) return new ResponseEntity<>(false, HttpStatus.LOCKED);
+		if(alunoRepository.findByUsuario(newAluno.getUsuario()) != null) return new ResponseEntity<>(false, HttpStatus.LOCKED);
+		if(alunoRepository.findByNome(newAluno.getNome()) != null) return new ResponseEntity<>(false, HttpStatus.LOCKED);
 		
-		professorRepository.save(new Professor(newProfessor));
+		alunoRepository.save(new Aluno(newAluno));
 		return new ResponseEntity<>(true, HttpStatus.CREATED);
 		
 	}

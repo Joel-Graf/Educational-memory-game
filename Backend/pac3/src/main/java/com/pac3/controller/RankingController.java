@@ -1,17 +1,13 @@
 package com.pac3.controller;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pac3.model.Aluno;
-import com.pac3.model.Log;
-import com.pac3.model.Professor;
+import com.pac3.entity.Aluno;
+import com.pac3.model.AlunoModel;
 import com.pac3.repository.AlunoRepository;
 
 @RestController
@@ -25,8 +21,7 @@ public class RankingController {
 	}
 
 	@PostMapping("/ranking")
-	Set<Aluno> obterAlunos() {
-		return (Set<Aluno>) alunoRepository.findAll();
+	List<Aluno> obterAlunos() {
+		return alunoRepository.findAll();
 	}
-	
 }
