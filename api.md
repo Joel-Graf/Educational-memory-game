@@ -31,35 +31,48 @@ O banco deve retornar um objeto com todos os alunos.
 # FASES
 
 ## Rota
-/fases
-/fases/{idUsuario}
+bioma: {
+        id,
+        nome,
+}
 
 ## Descrição
-O front envia uma requisição para consulta das fases do banco, sendo o objeto da fase (nome, id).
-O front envia o id do usuário e recebe a fase atual do aluno.
-
-## Consulta
-O banco deve retornar as fases cadastradas com o objeto delas.
+Requisição para obter do banco os dados do bioma
 
 # JOGO
 
 ## Rota
-/fases/{idUsuario}/{idFase}/{idDificuldade}
-
-## OBS
-O id da dificuldade vem do radio da tela de fases.
+aninais: {
+        id,
+        nome,
+        id_bioma,
+}
 
 ## Descrição
-O front envia uma requisição para consulta de todos os dados da fase.
+Requisição para obter do banco os dados do animais com base no id do bioma da fase.
+A quantidade de cartas sera definida com base na dificuldade(quantidade é fixa no front) e irá retornar os animais de forma aleatória nessa quantidade.
 
-## Consulta
-O banco deve retornar um objeto com todos os dados da dificuldade (numero de cartas e tempo limite).
-Baseado no número de cartas e no id dad fase ele deve buscar as cartas de animais
+# PARTIDA
 
+## Descrição
 
+VITÓRIA, ANDAMENTO, DERROTA
 
+# GRAVAÇÃO INICIAL
 
+aninais: {
+        id_aluno,
+        id_bioma,
+        id_dificuldade,
+        status, (ANDAMENTO)
+}
 
+# GRAVAÇÃO FINAL
 
-
-
+aninais: {
+        id_aluno,
+        id_bioma,
+        id_dificuldade,
+        status, (VITÓRIA, DERROTA)
+        tempoDaPartida
+}
