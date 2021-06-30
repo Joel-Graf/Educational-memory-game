@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 
 @Data
@@ -21,6 +23,7 @@ public class Dificuldade {
 	private Long tempoLimite;
 
 	@OneToMany(mappedBy="dificuldade")
+    @JsonManagedReference
 	private Set<Partida> partidas;
 	
 }

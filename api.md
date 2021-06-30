@@ -55,3 +55,11 @@ O front envia uma requisição para consulta de todos os dados da fase.
 ## Consulta
 O banco deve retornar um objeto com todos os dados da dificuldade (numero de cartas e tempo limite).
 Baseado no número de cartas e no id dad fase ele deve buscar as cartas de animais
+
+
+
+
+
+
+
+

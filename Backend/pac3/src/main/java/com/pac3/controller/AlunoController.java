@@ -29,22 +29,22 @@ public class AlunoController {
 	}
 
 	@PostMapping("/aluno/login")
-	 public ResponseEntity<?> logar(@RequestBody Aluno newAluno) {
+	 public ResponseEntity<?> logar(@RequestBody AlunoModel newAluno) {
 
 		Aluno aluno = new Aluno();
 		try {
 			aluno = alunoRepository.findByUsuario(newAluno.getUsuario());
 			if (aluno.getSenha().equals(newAluno.getSenha())) {
-				return new ResponseEntity<>(true, HttpStatus.ACCEPTED);
+				return new ResponseEntity<>(aluno, HttpStatus.ACCEPTED);
 			} else {
-				return new ResponseEntity<>(false, HttpStatus.FORBIDDEN);
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 			}
 			
 		} catch (NullPointerException e) {
-			return new ResponseEntity<>(false, HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			
 		} catch (Exception e) {
-			return new ResponseEntity<>(false, HttpStatus.FORBIDDEN);
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 			
 		}
 		

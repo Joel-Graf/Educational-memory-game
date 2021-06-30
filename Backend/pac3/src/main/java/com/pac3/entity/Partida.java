@@ -21,14 +21,18 @@ public class Partida {
 	private Long tempo;
 	private String status;
 	private Long pontos;
+	private Long tempoAluno;
 	
 	@ManyToOne @JoinColumn(name = "id_aluno", nullable = false)
+    @JsonBackReference
     private Aluno aluno;
 	
 	@ManyToOne @JoinColumn(name = "id_dificuldade", nullable = false)
+    @JsonBackReference
     private Dificuldade dificuldade;
 	
 	@ManyToOne @JoinColumn(name = "id_bioma", nullable = false)
+    @JsonBackReference
     private Bioma bioma;
 	
 }
