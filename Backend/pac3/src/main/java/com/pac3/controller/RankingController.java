@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pac3.entity.Aluno;
-import com.pac3.model.AlunoModel;
 import com.pac3.model.RankingModel;
-import com.pac3.repository.AlunoRepository;
 import com.pac3.repository.RankingRepository;
 
 @CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)

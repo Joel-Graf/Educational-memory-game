@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pac3.entity.Aluno;
 import com.pac3.entity.Partida;
 import com.pac3.model.PartidaModel;
-import com.pac3.model.RankingModel;
 import com.pac3.repository.AlunoRepository;
 import com.pac3.repository.BiomaRepository;
 import com.pac3.repository.DificuldadeRepository;

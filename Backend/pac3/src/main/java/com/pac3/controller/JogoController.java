@@ -1,6 +1,8 @@
 package com.pac3.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +30,19 @@ public class JogoController {
 
 	@PostMapping("/animais")
 	 public List<Animal> obterAnimais(@RequestBody JogoModel newJogo) {
-		return animalRepository.findByBioma(biomaRepository.findById(newJogo.getIdBioma()));
+		List<Animal> todosAnimais = animalRepository.findByBioma(biomaRepository.findById(newJogo.getIdBioma()));
+		List<Animal> animais = new ArrayList<Animal>();
+		
+		Random gerador = new Random();
+		for(int i=1;i<=newJogo.getQuantidadeCartas();i++) {
+		    long index = gerador.nextInt(todosAnimais.size());
+		    if (index==0) {
+		    	 i-=1;
+				 continue;
+		    }
+		    animais.add(animalRepository.findById(index).orElse(null));
+		}
+		
+		return animais;
 	}
 }
