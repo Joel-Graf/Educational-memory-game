@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -25,6 +25,6 @@ public class Animal {
 	private String descricao;
 	
 	@ManyToOne @JoinColumn(name = "id_bioma", nullable = false)
-    @JsonBackReference
+    @JsonManagedReference
     private Bioma bioma;
 }
