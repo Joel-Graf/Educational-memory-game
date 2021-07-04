@@ -3,6 +3,7 @@
     <div class="interface">
       <div class="interfaceForms">
         <h3 style="font-size: 5vh; color: rgba(20, 15, 40, 0.87)">Login</h3>
+        <h2 style="color:red" v-show="!valido">Login inválido</h2>
 
         <div class="forms">
           <v-text-field
@@ -40,7 +41,8 @@ export default {
         username: "",
         password: ""
       },
-      route:''
+      route:'', 
+      valido: true
     }
   },
   methods: {
@@ -60,10 +62,13 @@ export default {
       .then((response) => {
         if(response.status !== 202) {
           console.log("Request Error! Status: "+response.status)
+          this.valido = false
           return
         } 
-        this.$store.state.logged = true
-        this.$store.state.userLevel = response.data
+        // TODO: Adicionar user ID e level no payload
+        this.$store.commit('logIn')
+        this.valido = true
+        // this.$store.state.userLevel = response.data
       })
       .catch((error) => {
         console.log("Fetch Error! "+error)

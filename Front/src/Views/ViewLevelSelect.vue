@@ -2,27 +2,32 @@
   <div>
     <v-banner>
       <router-link to="/Menu">
-        <v-btn style="position:absolute" class="ma-2" color="dark darken-2" dark>
+        <v-btn
+          style="position:absolute"
+          class="ma-2"
+          color="dark darken-2"
+          dark
+        >
           <v-icon dark left> mdi-arrow-left </v-icon>Back
         </v-btn>
       </router-link>
 
       <div class="d-flex justify-center align-center">
         <span class="text-h5 mr-5 font-weight-medium"
-          >Seleciona a fase e dificuldade:
+          >Seleciona a fase e dificuldade: 
         </span>
-        
+
         <v-btn-toggle
           class="d-flex justify-center"
           rounded
           mandatory
-          v-model="dificuldade"
+          v-model="dificuldadeSelecionada"
         >
-          <v-btn value="Fácil" active-class="success white--text">
+          <v-btn value="facil" active-class="success white--text">
             Fácil
           </v-btn>
-          <v-btn value="Médio" active-class="amber white--text"> Médio </v-btn>
-          <v-btn value="Difícil" active-class="red white--text">
+          <v-btn value="medio" active-class="amber white--text"> Médio </v-btn>
+          <v-btn value="dificil" active-class="red white--text">
             Difícil
           </v-btn>
         </v-btn-toggle>
@@ -51,9 +56,12 @@ export default {
 
   data() {
     return {
-      // FIXME: Deixar tudo da dificuldade fixo
-      dificuldade: "facil",
-      // TODO: Puxa do banco
+      dificuldades: [
+        { nome: "facil", qtd_cartas: 8, tempo_limite: 120 },
+        { nome: "medio", qtd_cartas: 14, tempo_limite: 240 },
+        { nome: "dificil", qtd_cartas: 20, tempo_limite: 300 },
+      ],
+      dificuldadeSelecionada: "facil",
       levels: [
         { id: 0, nome: "Floresta", imagem: "", isLevelLocked: false },
         { id: 1, nome: "Deserto", imagem: "", isLevelLocked: true },
@@ -62,6 +70,15 @@ export default {
       ],
       // TODO: Só desbloquear leveis com numero <= level do jog
     };
+  },
+  computed: {
+    dificuldade() {
+      var result;
+      this.dificuldades.forEach((item) => {
+        if (this.dificuldadeSelecionada == item.nome) result = item;
+      });
+      return result;
+    },
   },
 };
 </script>

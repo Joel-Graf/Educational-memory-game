@@ -6,16 +6,21 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     logged: false,
-    userLevel: 0
+    userId: -1,
+    userLevel: 0,
   },
-  // mutations: {
-  //   logIn (state) {
-  //     state.logged = true
-  //   },
-  //   logOut (state) {
-  //     state.logged = false
-  //   }
-  // }
+  mutations: {
+    logIn (state, payload) {
+      state.logged = true
+      state.userId = payload.userId,
+      state.userLevel = payload.userLevel
+    },
+    logOut (state) {
+      state.logged = false,
+      state.userId = -1,
+      state.userLevel = 0
+    }
+  }
 })
 
 export default store

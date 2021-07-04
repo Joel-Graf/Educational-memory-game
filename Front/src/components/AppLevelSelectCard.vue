@@ -1,6 +1,10 @@
 <template id="interface">
   <div>
-    <router-link :to="`${this.route}`" props="teste" style="cursor:auto; text-decoration:none">
+    <router-link
+      :to="`${this.route}`"
+      props="teste"
+      style="cursor:auto; text-decoration:none"
+    >
       <v-card
         elevation="5"
         class="mx-auto my-6"
@@ -18,7 +22,7 @@
               font-weight-medium
             "
           >
-            <span>{{ Dificuldade }}</span>
+            <span>{{ Dificuldade.nome }}</span>
             <span>{{ Level.nome }}</span>
           </v-card-title>
 
@@ -38,8 +42,6 @@
 </template>
 
 <script>
-//import ViewGame from "../Views/ViewGame.vue";
-
 export default {
   props: {
     Level: {
@@ -47,23 +49,20 @@ export default {
       required: true,
     },
     Dificuldade: {
-      type: String,
+      type: Object,
       required: true,
     },
-  },
-  components: {
-    //ViewGame
   },
   data() {
     return {
       mostrarJogo: false,
       jogo: <ViewGame />,
-      route: '/LevelSelect'
+      route: "/LevelSelect",
     };
   },
   methods: {
-    selectLevel: function () {
-      this.route = '/Game'
+    selectLevel: function() {
+      this.route = "/Game";
     },
   },
 };
