@@ -51,13 +51,16 @@ export default {
 
   data() {
     return {
+      // FIXME: Deixar tudo da dificuldade fixo
       dificuldade: "facil",
+      // TODO: Puxa do banco
       levels: [
         { id: 0, nome: "Floresta", imagem: "", isLevelLocked: false },
         { id: 1, nome: "Deserto", imagem: "", isLevelLocked: true },
         { id: 2, nome: "Mar", imagem: "", isLevelLocked: true },
         { id: 3, nome: "Minecraft", imagem: "", isLevelLocked: true },
       ],
+      // TODO: Só desbloquear leveis com numero <= level do jog
     };
   },
 };

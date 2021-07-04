@@ -1,11 +1,10 @@
 <template>
   <v-container>
    <div class="interface"> 
-      
      <div class="interfaceForms"> 
        <h3 style="fontSize:5vh; color:rgba(20, 15, 40, 0.87)"> Cadastro </h3>
        <h4 style="fontSize:3vh; color:rgba(108, 108, 108)"> Seja bem vindo! Faça seu cadastro logo a baixo! </h4>
-
+        <h1 style="color:red" :v-if="valido">Registro inválido</h1>
         <div class="forms"> 
             <v-text-field
                 label="Nome"
@@ -26,7 +25,7 @@
             ></v-text-field>
         </div>
 
-      <router-link to="/Login">
+      <router-link :to="this.valido ? '/Login' : '/Register'">
          <v-btn
              x-large
             color="primary"
@@ -51,6 +50,7 @@
         nome: "",
         usuario: "",
         senha:"",
+        valido: false
       }
     },
     methods: {
@@ -60,7 +60,7 @@
           usuario: this.usuario,
           senha: this.senha,
         }
-        fetch('http://localhost:8090/pac3/professor/cadastrar', {
+        fetch('http://localhost:8090/pac3/aluno/cadastrar', {
           "method": 'POST',
           "headers": {
             'Accept': 'application/json',
@@ -69,12 +69,13 @@
           "body": JSON.stringify(opts)
         })
         .then((response) => {
-          if(response.status !== 200) {
+          if(response.status !== 201) {
             console.log("Request Error! Status: "+response.status)
             return
           } 
           response.json().then((data) => {
             console.log(data)
+            this.valido = true
           })
         })
         .catch((error) => {

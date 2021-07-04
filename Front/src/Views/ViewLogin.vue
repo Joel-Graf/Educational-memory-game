@@ -7,9 +7,9 @@
         <div class="forms">
           <v-text-field
             label="Usuário"
-            placeholder="maria@gmail.com"
+            placeholder="maria123"
             outlined
-            v-model="user.mail"
+            v-model="user.username"
           ></v-text-field>
 
           <v-text-field v-model="user.password"  label="Senha" outlined type="password"></v-text-field>
@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       user:{
-        mail: "",
+        username: "",
         password: ""
       },
       route:''
@@ -45,24 +45,29 @@ export default {
   },
   methods: {
     validate: function(){
-      /*
-      FIXME: Modelo de requisição
-      fetch('/login')
+      var opts = {
+        usuario: this.user.username,
+        senha: this.user.password,
+      }
+      fetch('http://localhost:8090/pac3/aluno/login', {
+        "method": 'POST',
+        "headers": {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        "body": JSON.stringify(opts)
+      })
       .then((response) => {
-        if(response.status !== 200) {
+        if(response.status !== 202) {
           console.log("Request Error! Status: "+response.status)
           return
         } 
-        response.json().then((data) => {
-          console.log(data)
-        })
+        this.$store.state.logged = true
+        this.$store.state.userLevel = response.data
       })
       .catch((error) => {
-        console.log("Fetch Error!")
+        console.log("Fetch Error! "+error)
       })
-      */
-      if(this.user.mail == "gustavo" && this.user.password == "123")
-        this.$store.state.logged = true
     },
   }
 };
