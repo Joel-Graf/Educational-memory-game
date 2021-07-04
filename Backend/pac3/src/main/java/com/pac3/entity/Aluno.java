@@ -36,15 +36,16 @@ public class Aluno {
 	private String senha;
 	private Long totalPontos;
 	private Long fase;
+	private Long tempoMedio;
 	//private Long tempoMedioFase;
  
     @ManyToOne @JoinColumn(name = "id_professor")
     @JsonManagedReference
 	private Professor professor;
 	
-    //@OneToMany(mappedBy="aluno")
-    //@JsonManagedReference
-	//private List<Partida> partidas;
+    @OneToMany(mappedBy="aluno")
+    @JsonBackReference
+	private List<Partida> partidas;
 
 	public Aluno(AlunoModel alunoModel){
 		this.nome=alunoModel.getNome();
@@ -53,7 +54,12 @@ public class Aluno {
 		//this.partidas=null;
 		this.totalPontos=0l;
 		this.fase=0l;
+		this.tempoMedio=0l;
 		this.professor=null;
 	}
+	/*
+	public Long obterTempoMedio(Aluno) {
+		return fase;
+	}*/
 	
 }

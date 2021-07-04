@@ -1,6 +1,5 @@
 package com.pac3.controller;
 
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,11 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pac3.entity.Aluno;
 import com.pac3.entity.Professor;
 import com.pac3.model.AlunoModel;
-import com.pac3.model.LogModel;
-import com.pac3.repository.AlunoRepository;
 import com.pac3.repository.ProfessorRepository;
 
 @CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
@@ -21,11 +17,9 @@ import com.pac3.repository.ProfessorRepository;
 @RequestMapping("/pac3")
 public class ProfessorController {
 
-	private final AlunoRepository alunoRepository;
 	private final ProfessorRepository professorRepository;
 	
-	ProfessorController(AlunoRepository alunoRepository, ProfessorRepository professorRepository) {
-		this.alunoRepository = alunoRepository;
+	ProfessorController(ProfessorRepository professorRepository) {
 		this.professorRepository = professorRepository;
 	}
 

@@ -15,6 +15,7 @@ public class PartidaModel {
 	private Long tempo;
 	private String status;
 	private Long pontos;
+	private Long tempoJogado;
 	private Long alunoId;
 	private Long difuculdadeId;
 	private Long biomaId;

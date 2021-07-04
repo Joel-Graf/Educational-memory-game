@@ -8,12 +8,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class RankingModel {
 
 	private Long id;
-	private Long nome;
+	private String nome;
 	private Long fase;
 	private Long tempoMedio;
-	
+
+	public RankingModel(Long id, String nome, Long fase, Long tempoMedio) {
+		this.id=id;
+		this.nome=nome;
+		this.fase=fase;
+		this.tempoMedio=tempoMedio;
+	}
 }
