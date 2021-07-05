@@ -68,6 +68,7 @@ export default {
         // TODO: Adicionar user ID e level no payload
         this.$store.commit('logIn')
         this.valido = true
+        this.$router.push('Login')
         // this.$store.state.userLevel = response.data
       })
       .catch((error) => {
