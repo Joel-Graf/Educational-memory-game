@@ -22,12 +22,10 @@
             </router-link>
           </div>
         </div>
-        <router-link to="/Menu">
-          <v-btn x-large color="primary" class="mr-4" @click="validate">
-            <v-icon left dark>mdi-login</v-icon>
-            Logar
-          </v-btn>
-        </router-link>
+        <v-btn x-large color="primary" class="mr-4" @click="validate">
+          <v-icon left dark>mdi-login</v-icon>
+          Logar
+        </v-btn>
       </div>
     </div>
   </v-container>
@@ -65,14 +63,16 @@ export default {
           this.valido = false
           return
         } 
-        // TODO: Adicionar user ID e level no payload
-        this.$store.commit('logIn')
-        this.valido = true
-        this.$router.push('Login')
-        // this.$store.state.userLevel = response.data
+        response.json().then((res) => { 
+          this.$store.commit('logIn', { userId:  res.id, userLevel: res.fase})
+          this.valido = true
+        })
       })
       .catch((error) => {
         console.log("Fetch Error! "+error)
+      })
+      .finally(() => {
+        this.$router.push("Menu")
       })
     },
   }
