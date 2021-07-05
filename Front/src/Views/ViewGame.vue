@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 <template>
   <div>
     <v-overlay :value="!isGameStarted" absolute="true">
@@ -15,6 +13,7 @@
       :InitialCards="dificulty.cardQuantity"
       @timeout="gameResult = 'Derrota'"
     />
+
     <v-container class="interface" fluid>
       <v-row v-if="!isGameFinished" align="center" class="cards">
         <AppGameCard
@@ -27,6 +26,7 @@
           :CardsFliped="cardsFliped"
           :IsGameLocked="isGameLocked"
           :Dificulty="dificulty.name"
+
           @flip-card="handleFlipCard"
           ref="CardsComponents"
         />
@@ -80,36 +80,7 @@ export default {
           name: "gato",
           image: "gato-frente.jpg",
           sound: "gato-som.mp3",
-        },
-        {
-          id: 3,
-          animalId: 2,
-          name: "gato3",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 4,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-         {
-          id: 3,
-          animalId: 2,
-          name: "gato3",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 4,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        
+        }
       ],
       isGameLocked: false,
       gameResult: "",
@@ -191,4 +162,4 @@ export default {
     justify-content: space-between; 
   }
 </style>
->>>>>>> Stashed changes
+

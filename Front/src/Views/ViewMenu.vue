@@ -1,88 +1,71 @@
 <template>
-    <v-container fluid id="container">
-        <div id="main">
-            <h1 id="tittle">
-            Menu
-            </h1>
-            <v-btn id="play" outlined color="indigo" @click="togglePlay">Jogar</v-btn><br>
-            <Drawer @close="togglePlay" align="left" :closeable="true">
-                <div v-if="openPlay" id="content"><ViewGame/></div>
-            </Drawer>
+  <v-container fluid id="container">
+    <div id="main">
+      <h1 id="tittle">
+        Menu
+      </h1>
 
-            <v-btn id="ranking" outlined color="indigo" @click="toggleRanking">Ranking</v-btn><br>
-            <Drawer @close="toggleRanking" align="left" :closeable="true">
-                <div v-if="openRanking" id="content"><ViewRanking/></div>
-            </Drawer>
-            
-            <v-btn id="zoo" outlined color="indigo" @click="toggleZoo">Zoológico</v-btn><br>
-            <Drawer @close="toggleZoo" align="left" :closeable="true">
-                <div v-if="openZoo" id="content"><ViewZoo/></div>
-            </Drawer>
+      <router-link to="/LevelSelect">
+        <v-btn id="play" outlined color="indigo"
+          ><v-icon left dark>mdi-play</v-icon>Jogar</v-btn
+        ><br />
+      </router-link>
 
-            <v-btn id="quit" outlined color="indigo"  @click="quit">Sair</v-btn>
-        </div>
-    </v-container>
+      <router-link to="/Ranking">
+        <v-btn id="ranking" outlined color="indigo"
+          ><v-icon left dark>mdi-chart-areaspline</v-icon>Ranking</v-btn
+        ><br />
+      </router-link>
+
+      <!--  <router-link to="/Zoo">
+                <v-btn id="zoo" outlined color="indigo"><v-icon left dark>mdi-paw</v-icon>Zoológico</v-btn><br>
+            </router-link> -->
+
+      <router-link to="/Login">
+        <v-btn id="quit" outlined color="indigo" @click="logout"
+          ><v-icon left dark>mdi-logout</v-icon>Sair</v-btn
+        >
+      </router-link>
+    </div>
+  </v-container>
 </template>
 
 <script>
-
-import ViewRanking from './ViewRanking.vue';
-import ViewGame from './ViewGame.vue';
-import ViewZoo from './ViewZoo.vue';
 export default {
-    data() {
-        return {
-            openPlay: false,
-            openRanking: false,
-            openZoo: false
-        }
+  data() {
+    return {};
+  },
+  methods: {
+    logout() {
+      this.$store.commit("logOut");
     },
-    components: {
-        ViewGame,
-        ViewRanking,
-        ViewZoo
-    },
-    methods: {
-        togglePlay() {
-            this.openPlay = !this.openPlay
-        },
-        toggleRanking() {
-            this.openRanking = !this.openRanking
-        },
-        toggleZoo() {
-            this.openZoo = !this.openZoo
-        }
-    }
-}
-
+  },
+};
 </script>
 
 <style scoped>
-
-#content{
-    background-color: rgb(243, 242, 242);
-    height: 40em;
+.content {
+  height: 40em;
 }
 
-#container{
-    display: table;
-    width: 100%;
+#container {
+  display: table;
+  width: 100%;
 }
 
-#main{
-   display: table-cell;
-   text-align: center;
-   vertical-align: middle;
-   padding-top: 5em;
+#main {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 5em;
 }
 
-#tittle{
-    margin-bottom: 30px;
+#tittle {
+  margin-bottom: 30px;
 }
 
-.v-btn{
-    width: 150px;
-    margin: 10px;
+.v-btn {
+  width: 150px;
+  margin: 10px;
 }
-
 </style>

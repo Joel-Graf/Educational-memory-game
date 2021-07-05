@@ -10,14 +10,22 @@
 
 ## Documentação produzida
 
-### Diagrama de Classe
-![Diagrama de Classe](relative/path/to/img.jpg?raw=true "Diagrama de Classe")
+### Mapa Mental
+![Mapa Mental](documentacao/mapa_mental.png?raw=true "Mapa Mental")
+
+### Protótipo
+![Diagrama de Classe](documentacao/prototipo.png?raw=true "Protótipo")
 
 ### Diagrama de Caso do Uso
-![Diagrama de Caso do Uso](relative/path/to/img.jpg?raw=true "Diagrama de Caso do Uso")
-
-### Mapa Mental
-![Mapa Mental](relative/path/to/img.jpg?raw=true "Mapa Mental")
+![Diagrama de Caso do Uso](documentacao/diagrama_caso_de_uso.png?raw=true "Diagrama de Caso do Uso")
 
 ### Modelagem do banco
-![Modelagem do banco](relative/path/to/img.jpg?raw=true "Modelagem do banco")
+![Modelagem do banco](documentacao/modelagem_banco_de_dados.png?raw=true "Modelagem do banco")
+
+### Diagrama de Classe
+![Diagrama de Classe](documentacao/diagrama_de_classe.png?raw=true "Diagrama de Classe")
+
+### Outros documentos
+[Pesquisa](documentacao/pequisa)
+
+[Documento de Requisitos](documentacao/documento_requisitos)

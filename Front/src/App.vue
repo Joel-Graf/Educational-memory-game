@@ -1,13 +1,10 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar app>
-      <v-toolbar-title>Jogo da Memória</v-toolbar-title>
-    </v-app-bar>
 
     <v-main>
       <v-container fluid>
         <v-fade-transition mode="out-in">
-          <ViewMenu/>
+          <router-view></router-view>
         </v-fade-transition>
       </v-container>
     </v-main>
@@ -15,15 +12,12 @@
 </template>
 
 <script>
-
-import ViewMenu from './Views/ViewMenu.vue';
-
 export default {
-  components: {
-    ViewMenu,
+  data() {
+    return {};
   },
-  data: () => ({
-    //
-  }),
+  created() {
+    //CHAMADA PRO BANCO
+  },
 };
 </script>
