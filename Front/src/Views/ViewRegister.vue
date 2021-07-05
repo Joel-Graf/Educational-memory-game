@@ -60,11 +60,7 @@ export default {
             this.valido = false;
             return;
           }
-          response.json().then((data) => {
-            // FIXME: Finalizar
-            console.log(data);
-            this.valido = true;
-          });
+          this.valido = true;
         })
         .catch((error) => {
           console.log("Fetch Error! " + error);
