@@ -1,17 +1,14 @@
-<template>
+<template class="interface">
   <v-card
     elevation="5"
-    class="mx-auto my-6"
-    :width="width"
-    :height="height"
     @click="clickCard"
+    :class="Dificulty"
   >
-    <div v-if="isFliped">
+    <div v-if="isFliped" >
       <v-img
-        :height="height-2"
-        :width="width-2"
+        id="teste"
         class="mx-auto my-auto d-flex justify-center align-center"
-        :src="require(`@/assets/${card.image}`)"
+        
       >
         <div style="background-color:rgba(0,0,0,0.2)">
           <p class='text-h6 text-center' style="color:white">{{ card.name.toUpperCase() }}</p>
@@ -20,8 +17,7 @@
     </div>
     <div v-else>
       <v-img
-        :height="height-2"
-        :width="width-2"
+        id="teste"
         class="mx-auto my-auto"
         :src="require('@/assets/Imagens/Oceano/oceano.jpg')"
       ></v-img>
@@ -48,6 +44,10 @@ export default {
       type: Boolean,
       required: true,
     },
+    Dificulty: {
+      type: String,
+      required:true,
+    },
     height: {
       type: Number,
       required: true,
@@ -55,7 +55,7 @@ export default {
     width: {
       type: Number,
       required: true,
-    }
+       }
   },
   data() {
     return {
@@ -78,6 +78,26 @@ export default {
     },
   },
 };
+// Facil = 6 , Media = 8, Dificil = 12
 </script>
 
-<style scoped></style>
+<style scoped>
+  .FacilMedia{
+    max-width: 240px;
+    max-height: 380px;
+    margin:auto;
+  }
+
+  .Dificil{
+    width: 210px;
+    height: 280px;
+    margin: auto;
+  }
+
+  .Dificil #teste{
+    width: 100%;
+    height: 280px;
+  }
+
+
+</style>
