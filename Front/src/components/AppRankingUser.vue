@@ -37,6 +37,7 @@ export default {
 
 <style scoped>
 #mainUser {
+  pointer-events: none;
   display: grid;
   grid-template-columns: 33% 34% 33%;
   align-items: start;

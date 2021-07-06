@@ -19,7 +19,7 @@
       <v-img
         id="teste"
         class="mx-auto my-auto"
-        :src="require('@/assets/Imagens/Oceano/oceano.jpg')"
+        :src="require('@/assets/Imagens/oceano/oceano.jpg')"
       ></v-img>
     </div>
   </v-card>

@@ -268,7 +268,7 @@ export default {
     padding: 15px;
     display: flex;
     flex-direction:column;
-    justify-content: space-between; 
+    justify-content: space-around; 
   }
 </style>
 
