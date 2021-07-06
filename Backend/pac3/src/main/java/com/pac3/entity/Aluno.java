@@ -53,7 +53,7 @@ public class Aluno {
 		this.senha=alunoModel.getSenha();
 		//this.partidas=null;
 		this.totalPontos=0l;
-		this.fase=0l;
+		this.fase=1l;
 		this.tempoMedio=0l;
 		this.professor=null;
 	}
