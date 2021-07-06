@@ -13,8 +13,9 @@
       :InitialCards="dificulty.cardQuantity"
       @timeout="gameResult = 'Derrota'"
     />
-    <v-container fluid>
-      <v-row v-if="!isGameFinished" align="center" justify="space-around">
+
+    <v-container class="interface" fluid>
+      <v-row v-if="!isGameFinished" align="center" class="cards">
         <AppGameCard
           v-for="(card, index) in cards"
           :key="card.id"
@@ -24,6 +25,8 @@
           :Index="index"
           :CardsFliped="cardsFliped"
           :IsGameLocked="isGameLocked"
+          :Dificulty="dificulty.name"
+
           @flip-card="handleFlipCard"
           ref="CardsComponents"
         />
@@ -48,7 +51,7 @@ export default {
   data() {
     return {
       level: "Floresta",
-      dificulty: { id: 1, name: "Fácil", cardQuantity: 8, timeLimit: 10 },
+      dificulty: { id: 1, name:"FacilMedia", cardQuantity: 4, timeLimit: 10 },
       cards: [
         {
           id: 1,
@@ -77,8 +80,7 @@ export default {
           name: "gato",
           image: "gato-frente.jpg",
           sound: "gato-som.mp3",
-        },
-
+        }
       ],
       isGameLocked: false,
       gameResult: "",
@@ -151,4 +153,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+  
+  .cards{
+    padding: 15px;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between; 
+  }
+</style>
+
