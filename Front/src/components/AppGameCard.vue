@@ -90,12 +90,12 @@ export default {
   }
 
   .Media{
-    width: 180px;
-    height: 220px;
+    width: 12%;
+    height: 32%;
   }
 
   .Media #teste{
-    height: 220px;
+    height: 29vh;
   }
 
   .Dificil{
