@@ -78,25 +78,34 @@ export default {
     },
   },
 };
-// Facil = 6 , Media = 8, Dificil = 12
+// Facil = 8 , Media = 14, Dificil = 20
 </script>
 
 <style scoped>
-  .FacilMedia{
+  .Facil{
     max-width: 240px;
     max-height: 380px;
     margin:auto;
   }
 
+  .Media{
+    width: 180px;
+    height: 220px;
+  }
+
+  .Media #teste{
+    height: 220px;
+  }
+
   .Dificil{
-    width: 210px;
-    height: 280px;
-    margin: auto;
+    width: 180px;
+    height: 220px;
   }
 
   .Dificil #teste{
-    width: 100%;
-    height: 280px;
+   height: 220px;
   }
+
+  
 
 </style>

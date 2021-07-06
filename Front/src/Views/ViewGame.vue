@@ -26,7 +26,6 @@
           :CardsFliped="cardsFliped"
           :IsGameLocked="isGameLocked"
           :Dificulty="dificulty.name"
-
           @flip-card="handleFlipCard"
           ref="CardsComponents"
         />
@@ -51,7 +50,7 @@ export default {
   data() {
     return {
       level: "Floresta",
-      dificulty: { id: 1, name:"FacilMedia", cardQuantity: 4, timeLimit: 10 },
+      dificulty: { id: 1, name:"Media", cardQuantity: 4, timeLimit: 10 },
       cards: [
         {
           id: 1,
@@ -80,7 +79,117 @@ export default {
           name: "gato",
           image: "gato-frente.jpg",
           sound: "gato-som.mp3",
+        },{
+          id: 1,
+          animalId: 1,
+          name: "gato",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },
+        {
+          id: 2,
+          animalId: 2,
+          name: "gato2",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },
+        {
+          id: 3,
+          animalId: 2,
+          name: "gato3",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },
+        {
+          id: 4,
+          animalId: 1,
+          name: "gato",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },
+        {
+          id: 3,
+          animalId: 2,
+          name: "gato3",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },
+        {
+          id: 4,
+          animalId: 1,
+          name: "gato",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },{
+          id: 1,
+          animalId: 1,
+          name: "gato",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },
+        {
+          id: 2,
+          animalId: 2,
+          name: "gato2",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },
+        {
+          id: 3,
+          animalId: 2,
+          name: "gato3",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },
+        {
+          id: 4,
+          animalId: 1,
+          name: "gato",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },
+        {
+          id: 3,
+          animalId: 2,
+          name: "gato3",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },
+        {
+          id: 4,
+          animalId: 1,
+          name: "gato",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },{
+          id: 1,
+          animalId: 1,
+          name: "gato",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },
+        {
+          id: 2,
+          animalId: 2,
+          name: "gato2",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },
+        {
+          id: 3,
+          animalId: 2,
+          name: "gato3",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
+        },
+        {
+          id: 4,
+          animalId: 1,
+          name: "gato",
+          image: "gato-frente.jpg",
+          sound: "gato-som.mp3",
         }
+        
       ],
       isGameLocked: false,
       gameResult: "",
