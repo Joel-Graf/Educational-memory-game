@@ -1,22 +1,28 @@
 <template>
   <v-container fluid id="container">
     <div id="mainUser">
-      <h2 class="text-center">{{ dataUser.name }}</h2>
+      <h2 class="text-center">{{ alunoLogado.nome }}</h2>
       <v-slider
         id="slider"
-        v-model="dataUser.currentPhase"
+        v-model="alunoLogado.tempoMedio"
         color="#000000"
         thumb-label="always"
         min="1"
         max="15"
       ></v-slider>
-      <h2 class="text-center">{{ dataUser.averageTime }}</h2>
+      <h2 class="text-center">{{ alunoLogado.fase }}</h2>
     </div>
   </v-container>
 </template>
 
 <script>
 export default {
+  props: {
+    alunoLogado: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       dataUser: {

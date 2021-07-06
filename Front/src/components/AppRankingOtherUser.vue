@@ -1,110 +1,101 @@
 <template>
   <v-container fluid id="container">
     <div id="main">
-      <v-data-table
-        :headers="headers"
-        :items="dataUsers"
-        :items-per-page="5"
-        :value="phase"
-      >
-        <template v-slot:item.phase="{ item }">
+      <ul >
+        <li v-for="item in allAlunos" :key="item.id" class="list">
+          <div class="aluno">{{ item.nome }} </div>
+          <div class="fase">
+            <v-slider
+              class="slider"
+              color="primary"
+              height="70"
+              min="1"
+              max="15"
+              :value="item.fase"
+              readonly
+              thumb-label="always"
+            >
+            </v-slider>
+          </div>
+          <div class="tempo"> {{ item.tempoMedio }}</div>
+        </li>
+      </ul>
+    </div>
+  </v-container>
+</template>
+
+<script>
+/* 
+  <template v-slot: item.phase="{ item }">
           <v-slider
             class="slider"
             color="primary"
             height="70"
             min="1"
             max="15"
-            :value="item.currentPhase"
+            :value="item.nome"
             readonly
             thumb-label="always"
           >
-          {{phase}}
+            {{ phase }}
           </v-slider>
         </template>
-      </v-data-table>
-    </div>
-  </v-container>
-</template>
-
-<script>
+*/
 export default {
+  props: {
+    allAlunos: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       headers: [
         { value: "name", align: "center", width: "33%" },
         { value: "phase", align: "center", width: "33%" },
         { value: "averageTime", align: "center", width: "33%" },
-      ],
-      dataUsers: [
-        {
-          id: 1,
-          name: "Ciclano Jerun",
-          currentPhase: 6,
-          averageTime: 53.9,
-        },
-        {
-          id: 2,
-          name: "Fulano de tal",
-          currentPhase: 8,
-          averageTime: 29.1,
-        },
-        {
-          id: 3,
-          name: "Beltrano Xevudor",
-          currentPhase: 8,
-          averageTime: 10.0,
-        },
-        {
-          id: 4,
-          name: "Riuro ano",
-          currentPhase: 2,
-          averageTime: 10.1,
-        },
-        {
-          id: 5,
-          name: "Podoki Erbeuloa",
-          currentPhase: 5,
-          averageTime: 13.3,
-        },
-        {
-          id: 6,
-          name: "Papaelu Hasorid",
-          currentPhase: 4,
-          averageTime: 34.0,
-        },
-        {
-          id: 7,
-          name: "Zucal Arceaim",
-          currentPhase: 9,
-          averageTime: 74.4,
-        },
-        {
-          id: 8,
-          name: "Kihal Bumnemgog",
-          currentPhase: 6,
-          averageTime: 12.0,
-        },
-        {
-          id: 9,
-          name: "Weudo Heocitwog",
-          currentPhase: 4,
-          averageTime: 23.2,
-        },
-        {
-          id: 10,
-          name: "Tiaca Erbeuloa",
-          currentPhase: 3,
-          averageTime: 14.2,
-        },
       ]
     };
   },
 };
 </script>
 <style scoped>
-
-.slider{
+.slider {
   margin-top: 3em;
 }
 
+.list {
+  background: #cecece;
+  margin: 10px;
+  display: flex;
+  font-weight: 2; 
+  padding: 0px; 
+  align-items: center; 
+  justify-content: center; 
+  text-align: center; 
+  width: 90%; 
+  margin: 15px auto; 
+  height: 78px; 
+  background: #F0F0F0;
+  box-shadow: 0px 0px 8px #cecece; 
+  border-radius: 0px 10px 10px 0px; 
+  border-left: 5px solid blue;
+}
+
+ .aluno{
+   width: 33%; 
+   font-size: 24px;
+   font-weight: 300;
+ }
+
+ .fase{
+   margin-top: 25px;
+   width: 33%;
+ }
+
+ .tempo{
+   width: 33%;
+   font-size: 25px;
+   font-weight: 300;
+ }
 </style>

@@ -9,8 +9,8 @@
     <div class="d-flex flex-column align-center">
       <h1>Ranking</h1>
       <AppRankingHeader />
-      <AppRankingUser />
-      <AppRankingOtherUser />
+      <AppRankingUser :alunoLogado="alunoLogado" /> 
+      <AppRankingOtherUser :allAlunos="todosAlunos"/> 
     </div>
   </v-container>
 </template>
@@ -18,7 +18,7 @@
 
 
 <script>
-import AppRankingOtherUser from "../components/AppRankingOtherUser";
+import AppRankingOtherUser from "../components/AppRankingOtherUser.vue";
 import AppRankingUser from "../components/AppRankingUser.vue";
 import AppRankingHeader from "../components/AppRankingHeader.vue";
 
