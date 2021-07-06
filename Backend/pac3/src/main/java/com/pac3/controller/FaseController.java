@@ -25,6 +25,6 @@ public class FaseController {
 	List<Bioma> obterBiomas() {
 		//List<Aluno> alunos = biomaRepository.findAll();
 		//List<RankingModel> a = new ArrayList<RankingModel>();
-		return biomaRepository.findAll();
+		return biomaRepository.findAllByOrderByIdAsc();
 	}
 }

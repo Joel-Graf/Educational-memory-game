@@ -14,7 +14,7 @@
 
       <div class="d-flex justify-center align-center">
         <span class="text-h5 mr-5 font-weight-medium"
-          >Seleciona a fase e dificuldade: 
+          >Seleciona a fase e dificuldade:
         </span>
 
         <v-btn-toggle
@@ -62,14 +62,32 @@ export default {
         { nome: "dificil", qtd_cartas: 20, tempo_limite: 300 },
       ],
       dificuldadeSelecionada: "facil",
-      levels: [
-        { id: 0, nome: "Floresta", imagem: "", isLevelLocked: false },
-        { id: 1, nome: "Deserto", imagem: "", isLevelLocked: true },
-        { id: 2, nome: "Mar", imagem: "", isLevelLocked: true },
-        { id: 3, nome: "Minecraft", imagem: "", isLevelLocked: true },
-      ],
-      // TODO: Só desbloquear leveis com numero <= level do jog
+      levels: [],
     };
+  },
+  mounted() {
+    fetch("http://localhost:8090/pac3/bioma", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          console.log("Request Error! Status: " + response.status);
+          return;
+        }
+        response.json().then((res) => {
+          res.forEach((item) => {
+            item.isLevelLocked = item.id > this.$store.state.userLevel;
+          });
+          this.levels = res;
+        });
+      })
+      .catch((error) => {
+        console.log("Fetch Error! " + error);
+      });
   },
   computed: {
     dificuldade() {
