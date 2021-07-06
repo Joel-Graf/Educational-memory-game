@@ -19,7 +19,7 @@
       <v-img
         id="teste"
         class="mx-auto my-auto"
-        :src="require('@/assets/Imagens/Oceano/oceano.jpg')"
+        :src="require('@/assets/Imagens/' + 'Oceano' + '/' + kindLevel + '.jpg')" 
       ></v-img>
     </div>
   </v-card>
@@ -61,6 +61,7 @@ export default {
     return {
       card: this.Card,
       isFliped: false,
+      kindLevel:"oceano", 
     };
   },
   methods: {
@@ -105,7 +106,5 @@ export default {
   .Dificil #teste{
    height: 220px;
   }
-
-  
 
 </style>
