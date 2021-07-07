@@ -64,15 +64,16 @@ aninais: {
         id_aluno,
         id_bioma,
         id_dificuldade,
-        status, (ANDAMENTO)
+}
+
+retorno {
+        id_partida,
 }
 
 # GRAVAÇÃO FINAL
 
 aninais: {
-        id_aluno,
-        id_bioma,
-        id_dificuldade,
+        id_partida,
         status, (VITÓRIA, DERROTA)
         tempoDaPartida
 }
