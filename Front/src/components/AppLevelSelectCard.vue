@@ -56,7 +56,6 @@ export default {
   },
   methods: {
     criaJogo() {
-      alert('jacare')
       this.$store.commit('criaJogo', { level: this.Level, dificuldade: this.Dificuldade})
     }
   },
