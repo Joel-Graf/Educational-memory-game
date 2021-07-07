@@ -36,7 +36,7 @@ public class PartidaController {
 		this.dificuldadeRepository = dificuldadeRepository;
 	}
 	
-	@PostMapping("/partida/cadastrar")
+	@PostMapping("/partida/finishGame")
 	public ResponseEntity<?> cadastrar(@RequestBody PartidaModel newPartida) {
 		System.out.println(newPartida.getAlunoId());
 		System.out.println(newPartida.getBiomaId());
