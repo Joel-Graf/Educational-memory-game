@@ -13,7 +13,6 @@
       :InitialCards="dificulty.cardQuantity"
       @timeout="gameResult = 'Derrota'"
     />
-
     <v-container class="interface" fluid>
       <v-row v-if="!isGameFinished" align="center" class="cards">
         <AppGameCard
@@ -46,7 +45,16 @@ export default {
     AppGameHeader,
     AppGameCard,
   },
-
+  props: {
+    Level: {
+      type: String,
+      required: true
+    },
+    Dificuldade: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       level: "Floresta",

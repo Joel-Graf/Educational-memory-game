@@ -7,7 +7,9 @@ const store = new Vuex.Store({
   state: {
     logged: false,
     userId: -1,
-    userLevel: 0,
+    userLevel: -1,
+    level: null,
+    dificuldade: null,
   },
   mutations: {
     logIn (state, payload) {
@@ -19,6 +21,10 @@ const store = new Vuex.Store({
       state.logged = false,
       state.userId = -1,
       state.userLevel = 0
+    },
+    criaJogo(state, payload) {
+      state.level = payload.level,
+      state.dificuldade = payload.dificuldade
     }
   }
 })

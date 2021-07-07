@@ -1,8 +1,7 @@
 <template id="interface">
   <div>
     <router-link
-      :to="`${this.route}`"
-      props="teste"
+      to="/Game"
       style="cursor:auto; text-decoration:none"
     >
       <v-card
@@ -10,7 +9,7 @@
         class="mx-auto my-6"
         width="324"
         height="332"
-        @click="selectLevel"
+        @click="criaJogo"
         :disabled="Level.isLevelLocked"
       >
         <v-img height="260" class="mx-3 mb-2">
@@ -36,8 +35,6 @@
         </v-img>
       </v-card>
     </router-link>
-
-    {{ this.mostrarJogo ? this.jogo : undefined }}
   </div>
 </template>
 
@@ -55,15 +52,13 @@ export default {
   },
   data() {
     return {
-      mostrarJogo: false,
-      jogo: <ViewGame />,
-      route: "/LevelSelect",
     };
   },
   methods: {
-    selectLevel: function() {
-      this.route = "/Game";
-    },
+    criaJogo() {
+      alert('jacare')
+      this.$store.commit('criaJogo', { level: this.Level, dificuldade: this.Dificuldade})
+    }
   },
 };
 </script>
