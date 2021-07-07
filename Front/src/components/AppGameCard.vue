@@ -19,7 +19,7 @@
       <v-img
         id="teste"
         class="mx-auto my-auto"
-        :src="require('@/assets/Imagens/' + 'Oceano' + '/' + kindLevel + '.jpg')" 
+        :src="require('@/assets/Imagens/' + 'oceano' + '/' + kindLevel + '.jpg')" 
       ></v-img>
     </div>
   </v-card>
@@ -88,23 +88,22 @@ export default {
     max-height: 380px;
     margin:auto;
   }
-
+  
   .Media{
+    width: 13%;
+    height: 44%;
+  }
+  .Media #teste{
+    height: 40vh;
+  }
+
+  .Dificil{
     width: 10%;
     height: 30%;
   }
 
-  .Media #teste{
-    height: 26.6vh;
-  }
-
-  .Dificil{
-    width: 180px;
-    height: 220px;
-  }
-
   .Dificil #teste{
-   height: 220px;
+   height: 26.6vh;
   }
 
 </style>

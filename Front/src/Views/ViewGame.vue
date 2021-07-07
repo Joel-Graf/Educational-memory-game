@@ -58,7 +58,7 @@ export default {
   data() {
     return {
       level: "Floresta",
-      dificulty: { id: 1, name:"Media", cardQuantity: 4, timeLimit: 10 },
+      dificulty: { id: 1, name:"Dificil", cardQuantity: 4, timeLimit: 10 },
       cards: [
         {
           id: 1,
