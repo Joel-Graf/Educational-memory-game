@@ -10,7 +10,7 @@
       :Level="level"
       :TimerEnabled="isGameStarted && !isGameFinished"
       :CardPairsRemaining="cards.length"
-      :InitialCards="dificulty.cardQuantity"
+      :InitialCards="dificulty.qtd_cartas"
       @timeout="gameResult = 'Derrota'"
     />
     <v-container class="interface" fluid>
@@ -24,12 +24,17 @@
           :Index="index"
           :CardsFliped="cardsFliped"
           :IsGameLocked="isGameLocked"
-          :Dificulty="dificulty.name"
+          :Dificulty="dificulty.nome"
           @flip-card="handleFlipCard"
           ref="CardsComponents"
         />
       </v-row>
-      <AppGameFinished :GameResult="gameResult" :isGameRestart="isGameRestart" align="center" v-else/>
+      <AppGameFinished
+        :GameResult="gameResult"
+        :isGameRestart="isGameRestart"
+        align="center"
+        v-else
+      />
     </v-container>
   </div>
 </template>
@@ -45,20 +50,14 @@ export default {
     AppGameHeader,
     AppGameCard,
   },
-  props: {
-    Level: {
-      type: String,
-      required: true
-    },
-    Dificuldade: {
-      type: String,
-      required: true
-    }
-  },
   data() {
     return {
-      level: "Floresta",
-      dificulty: { id: 1, name:"Media", cardQuantity: 4, timeLimit: 10 },
+      level: this.$store.state.level,
+      dificulty: this.$store.state.dificuldade,
+      isGameLocked: false,
+      gameResult: "",
+      cardsFliped: [],
+      isGameStarted: false,
       cards: [
         {
           id: 1,
@@ -68,26 +67,6 @@ export default {
           sound: "gato-som.mp3",
         },
         {
-          id: 2,
-          animalId: 2,
-          name: "gato2",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 3,
-          animalId: 2,
-          name: "gato3",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 4,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },{
           id: 1,
           animalId: 1,
           name: "gato",
@@ -95,114 +74,13 @@ export default {
           sound: "gato-som.mp3",
         },
         {
-          id: 2,
-          animalId: 2,
-          name: "gato2",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 3,
-          animalId: 2,
-          name: "gato3",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 4,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 3,
-          animalId: 2,
-          name: "gato3",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 4,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },{
           id: 1,
           animalId: 1,
           name: "gato",
           image: "gato-frente.jpg",
           sound: "gato-som.mp3",
         },
-        {
-          id: 2,
-          animalId: 2,
-          name: "gato2",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 3,
-          animalId: 2,
-          name: "gato3",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 4,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 3,
-          animalId: 2,
-          name: "gato3",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 4,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },{
-          id: 1,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 2,
-          animalId: 2,
-          name: "gato2",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 3,
-          animalId: 2,
-          name: "gato3",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 4,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        }
-        
       ],
-      isGameLocked: false,
-      gameResult: "",
-      cardsFliped: [],
-      isGameStarted: false,
     };
   },
   computed: {
@@ -221,9 +99,9 @@ export default {
     },
   },
   methods: {
-    isGameRestart(){
-     this.isGameStarted = true;
-     this.isGameFinished = false;
+    isGameRestart() {
+      this.isGameStarted = true;
+      this.isGameFinished = false;
     },
     handleFlipCard(cardObject) {
       //Verifica se o jogo está trancado (Existe duas cartas viradas)
@@ -267,16 +145,42 @@ export default {
       }
     },
   },
+  mounted() {
+    var opts = {
+      // idBioma: this.$store.state.level.id,
+      // quantidadeCartas: (this.$store.state.dificuldade.qtd_cartas/2),
+      idBioma: this.$store.state.level.id,
+      quantidadeCartas: this.$store.state.dificuldade.qtd_cartas / 2,
+    };
+    fetch("http://localhost:8090/pac3/animais", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(opts),
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          console.log("Request Error! Status: " + response.status);
+          return;
+        }
+        // response.json().then((res) => {
+        //   // this.cards = res;
+        // });
+      })
+      .catch((error) => {
+        console.log("Fetch Error! " + error);
+      });
+  },
 };
 </script>
 
 <style>
-  
-  .cards{
-    padding: 15px;
-    display: flex;
-    flex-direction:column;
-    justify-content: space-around; 
-  }
+.cards {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
 </style>
-

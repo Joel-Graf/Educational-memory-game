@@ -83,27 +83,27 @@ export default {
 </script>
 
 <style scoped>
-  .Facil{
+  .facil{
     max-width: 240px;
     max-height: 380px;
     margin:auto;
   }
 
-  .Media{
+  .media{
     width: 10%;
     height: 30%;
   }
 
-  .Media #teste{
+  .media #teste{
     height: 26.6vh;
   }
 
-  .Dificil{
+  .dificil{
     width: 180px;
     height: 220px;
   }
 
-  .Dificil #teste{
+  .dificil #teste{
    height: 220px;
   }
 
