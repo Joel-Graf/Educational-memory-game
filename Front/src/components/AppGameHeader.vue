@@ -34,7 +34,7 @@
 export default {
   props: {
     Level: {
-      type: String,
+      type: Object,
       required: true,
     },
     Dificulty: {
