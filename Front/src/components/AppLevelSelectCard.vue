@@ -4,6 +4,7 @@
       to="/Game"
       style="cursor:auto; text-decoration:none"
     >
+    {{teste}}
       <v-card
         elevation="5"
         class="mx-auto my-6"
@@ -12,7 +13,7 @@
         @click="criaJogo"
         :disabled="Level.isLevelLocked"
       >
-        <v-img height="260" class="mx-3 mb-2">
+        <v-img  height="100%" width="100%" class="mx-0 mb-2">
           <v-card-title
             class="
               d-flex
@@ -21,6 +22,7 @@
               font-weight-medium
             "
           >
+
             <span>{{ Dificuldade.nome }}</span>
             <span>{{ Level.nome }}</span>
           </v-card-title>
@@ -52,6 +54,8 @@ export default {
   },
   data() {
     return {
+      teste:"../assets/Imagens/oceano/oceano.jpg",
+      oi:"oceano"
     };
   },
   methods: {
@@ -62,4 +66,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+  #teste{
+    background-image:url('../assets/Imagens/oceano/oceano.jpg');
+    background-size: 100% 100%;
+  }
+</style>
