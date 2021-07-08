@@ -83,7 +83,7 @@ export default {
 </script>
 
 <style scoped>
-  .Facil{
+  .facil{
     max-width: 240px;
     max-height: 380px;
     margin:auto;
