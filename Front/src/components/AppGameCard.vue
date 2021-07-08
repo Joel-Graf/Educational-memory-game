@@ -19,7 +19,7 @@
       <v-img
         id="teste"
         class="mx-auto my-auto"
-        :src="require('@/assets/Imagens/' + 'oceano' + '/' + kindLevel + '.jpg')" 
+        :src="require('@/assets/Imagens/' + LevelName + '/' + LevelName.toLowerCase() + '.jpg')" 
       ></v-img>
     </div>
   </v-card>
@@ -28,6 +28,10 @@
 <script>
 export default {
   props: {
+    LevelName: {
+      type: String,
+      required: true,
+    },
     Card: {
       type: Object,
       required: true,
@@ -55,13 +59,12 @@ export default {
     width: {
       type: Number,
       required: true,
-       }
+    }
   },
   data() {
     return {
       card: this.Card,
       isFliped: false,
-      kindLevel:"oceano", 
     };
   },
   methods: {
