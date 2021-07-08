@@ -19,6 +19,7 @@
           v-for="(card, index) in cards"
           :key="card.id"
           :Card="card"
+          :LevelName="level.nome"
           :height="324"
           :width="332"
           :Index="index"
