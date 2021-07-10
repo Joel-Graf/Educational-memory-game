@@ -91,20 +91,20 @@ export default {
     margin:auto;
   }
   
-  .Media{
+  .medio{
     width: 13%;
     height: 44%;
   }
-  .Media #teste{
+  .medio #teste{
     height: 40vh;
   }
 
-  .Dificil{
+  .dificil{
     width: 10%;
     height: 30%;
   }
 
-  .Dificil #teste{
+  .dificil #teste{
    height: 26.6vh;
   }
 

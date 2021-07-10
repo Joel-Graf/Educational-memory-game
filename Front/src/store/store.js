@@ -10,6 +10,8 @@ const store = new Vuex.Store({
     userLevel: -1,
     level: null,
     dificuldade: null,
+    matchId: -1,
+    tempoDecorrido: 0,
   },
   mutations: {
     logIn (state, payload) {
