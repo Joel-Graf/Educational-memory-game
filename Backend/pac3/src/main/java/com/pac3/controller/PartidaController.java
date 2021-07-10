@@ -45,6 +45,11 @@ public class PartidaController {
 		);
 
 		Partida partidaAtual = partidaRepository.getById(partidaRepository.count());
+		ArrayList<Partida> partidasAluno = new ArrayList<Partida>();
+		Aluno aluno = alunoRepository.findById(newPartida.getAlunoId()).orElse(null);
+		partidasAluno.add(partidaAtual);
+		aluno.setPartidas(partidasAluno);
+		alunoRepository.save(aluno);
 		/*
 		List<Partida> partidas = partidaRepository.findAll();
 		List<Long> tempos = new ArrayList<Long>();
@@ -68,21 +73,22 @@ public class PartidaController {
 		return new ResponseEntity<>(partidaAtual.getId(), HttpStatus.OK);
 		
 	}
-	/*
+	
 	@PostMapping("/finishGame")
 	public ResponseEntity<?> startGame(@RequestBody PartidaModel newPartida) {
 
-		Partida partidaAtual = partidaRepository.getById(newPartida.getId()); 
+		Partida partidaAtual = partidaRepository.getById(newPartida.getId());
+		System.out.println(partidaAtual.getStatus());
 		partidaAtual.setStatus(newPartida.getStatus());
 		partidaAtual.setTempoJogado(newPartida.getTempoJogado());
 		partidaRepository.save(partidaAtual);
 		
 		List<Partida> partidasBanco = partidaRepository.findAll();
-		List<Partida> partidasAluno = new ArrayList<Partida>();
+		List<Partida>  partidasAluno = new ArrayList<Partida>();
 		for (Partida partidaBanco : partidasBanco) {
-			partidaBanco.getAluno();
-			if (partidaBanco.get.getId()==partidaAtual.getId()) {
+			if ((partidaBanco.getAluno()!=null)&&(partidaBanco.getAluno().getId()==newPartida.getAlunoId())) {
 				partidasAluno.add(partidaBanco);
+				System.out.println(partidaBanco.getId());
 			}
 		}
 		List<Long> tempos = new ArrayList<Long>();
@@ -94,17 +100,18 @@ public class PartidaController {
 		Long soma = 0l;
 		Long tempoMedio = 0l;
 		for (Long tempo : tempos) {
-			soma+=tempo;
+			if(tempo!=null) { soma+=tempo; }
 		}
-		tempoMedio=soma/tempos.size();
-		
-		Aluno aluno = new Aluno();
-		aluno = alunoRepository.findById(partidaAtual.getId()).orElse(null);
+		if (tempos.size()!=0) { tempoMedio=soma/tempos.size(); }
+		System.out.println(newPartida.getAlunoId());
+		Aluno aluno  = alunoRepository.findById(newPartida.getAlunoId()).orElse(null);
 		aluno.setTempoMedio(tempoMedio);
-		aluno.setPartidas(partidaAtual.getId());
+		
+		partidasAluno.add(partidaAtual);
+		aluno.setPartidas(partidasAluno);
 		alunoRepository.save(aluno);
 		
 		return new ResponseEntity<>(true, HttpStatus.CREATED);
 		
-	}*/
+	}
 }
