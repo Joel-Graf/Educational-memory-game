@@ -1,7 +1,12 @@
 s<template>
   <div>
-    <v-overlay :value="!isGameStarted" absolute="true">
-      <v-btn @click="isGameStarted = !isGameStarted" color="primary" x-large>
+    <v-overlay :value="!isGameStarted" :absolute="true">
+      <v-btn
+        @click="isGameStarted = !isGameStarted"
+        :disabled="!isCardsReady"
+        color="primary"
+        x-large
+      >
         Iniciar Jogo
       </v-btn>
     </v-overlay>
@@ -9,7 +14,7 @@ s<template>
       :Dificulty="dificulty"
       :Level="level"
       :TimerEnabled="isGameStarted && !isGameFinished"
-      :CardPairsRemaining="cards.length"
+      :CardPairsRemaining="cardPairsRemaining"
       :InitialCards="dificulty.qtd_cartas"
       @timeout="gameResult = 'Derrota'"
     />
@@ -17,7 +22,7 @@ s<template>
       <v-row v-if="!isGameFinished" align="center" class="cards">
         <AppGameCard
           v-for="(card, index) in cards"
-          :key="card.id"
+          :key="index+'_'+card.nome"
           :Card="card"
           :LevelName="level.nome"
           :height="324"
@@ -32,7 +37,6 @@ s<template>
       </v-row>
       <AppGameFinished
         :GameResult="gameResult"
-        :isGameRestart="isGameRestart"
         align="center"
         v-else
       />
@@ -59,29 +63,8 @@ export default {
       gameResult: "",
       cardsFliped: [],
       isGameStarted: false,
-      cards: [
-        {
-          id: 1,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 1,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 1,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-      ],
+      isCardsReady: false,
+      cards: [],
     };
   },
   computed: {
@@ -97,13 +80,9 @@ export default {
       if (newCardsRemaning == 0) {
         this.gameResult = "Vitória";
       }
-    },
+    }
   },
   methods: {
-    isGameRestart() {
-      this.isGameStarted = true;
-      this.isGameFinished = false;
-    },
     handleFlipCard(cardObject) {
       //Verifica se o jogo está trancado (Existe duas cartas viradas)
       if (!this.isGameLocked) {
@@ -119,7 +98,8 @@ export default {
           setTimeout(function() {
             var card1 = vueInst.cardsFliped[0];
             var card2 = vueInst.cardsFliped[1];
-            if (card1.animalId == card2.animalId) {
+            
+            if (card1.id == card2.id) {
               // Se fechou par, deleta as cartas
               vueInst.deleteCards(card1, card2);
             } else {
@@ -145,11 +125,22 @@ export default {
         this.$delete(this.cards, card1.index);
       }
     },
+    shuffle(array) {
+      var currentIndex = array.length,  randomIndex;
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+      }
+      return array;
+    }
   },
   mounted() {
     var opts = {
-      // idBioma: this.$store.state.level.id,
-      // quantidadeCartas: (this.$store.state.dificuldade.qtd_cartas/2),
       idBioma: this.$store.state.level.id,
       quantidadeCartas: this.$store.state.dificuldade.qtd_cartas / 2,
     };
@@ -166,9 +157,14 @@ export default {
           console.log("Request Error! Status: " + response.status);
           return;
         }
-        // response.json().then((res) => {
-        //   // this.cards = res;
-        // });
+        response.json().then((resReq) => {
+          var arrCards = resReq.reduce(function (res, current) {
+            return res.concat([current, current]);
+          }, []);
+          arrCards = this.shuffle(arrCards)
+          this.cards = arrCards
+          setTimeout(()=>{this.isCardsReady = true}, 1000)
+        });
       })
       .catch((error) => {
         console.log("Fetch Error! " + error);

@@ -1,11 +1,14 @@
 <template>
-  <h1>ViewZoo</h1>
+  <h1>Loading</h1>
 </template>
 
 <script>
 export default {
   data() {
     return {};
+  },
+  created(){
+    this.$router.push('Game')
   },
 };
 </script>

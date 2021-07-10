@@ -34,12 +34,6 @@ export default {
       type: String,
       required: true,
     },
-    isGameRestart: {
-      type:Boolean,
-      default: function(){
-        return {isGameRestart: true}
-      }
-    },
   },
   data() {
     return {
@@ -48,7 +42,7 @@ export default {
   },
   methods: {
     restartGame() {
-      this.isGameRestart();
+      this.$router.push('Zoo')
     }
   },
 };
