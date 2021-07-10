@@ -22,7 +22,7 @@ s<template>
       <v-row v-if="!isGameFinished" align="center" class="cards">
         <AppGameCard
           v-for="(card, index) in cards"
-          :key="index+'_'+card.nome"
+          :key="index + '_' + card.nome"
           :Card="card"
           :LevelName="level.nome"
           :height="324"
@@ -35,11 +35,7 @@ s<template>
           ref="CardsComponents"
         />
       </v-row>
-      <AppGameFinished
-        :GameResult="gameResult"
-        align="center"
-        v-else
-      />
+      <AppGameFinished :GameResult="gameResult" align="center" v-else />
     </v-container>
   </div>
 </template>
@@ -80,7 +76,7 @@ export default {
       if (newCardsRemaning == 0) {
         this.gameResult = "Vitória";
       }
-    }
+    },
   },
   methods: {
     handleFlipCard(cardObject) {
@@ -98,20 +94,21 @@ export default {
           setTimeout(function() {
             var card1 = vueInst.cardsFliped[0];
             var card2 = vueInst.cardsFliped[1];
-            
+
             if (card1.id == card2.id) {
               // Se fechou par, deleta as cartas
               vueInst.deleteCards(card1, card2);
-            } else {
-              // Se não fechou, desvira as cartas
-              vueInst.$refs.CardsComponents[card1.index].isFliped = false;
-              vueInst.$refs.CardsComponents[card2.index].isFliped = false;
             }
 
             // Limpa a lista de cartas viradas e destrava o jogo
             vueInst.cardsFliped = [];
-            vueInst.isGameLocked = false;
-          }, 1500);
+            vueInst.$refs.CardsComponents.forEach((card) => {
+              card.isFliped = false;
+            });
+            setTimeout(() => {
+              vueInst.isGameLocked = false;
+            }, 250);
+          }, 750);
         }
       }
     },
@@ -126,7 +123,8 @@ export default {
       }
     },
     shuffle(array) {
-      var currentIndex = array.length,  randomIndex;
+      var currentIndex = array.length,
+        randomIndex;
       // While there remain elements to shuffle...
       while (0 !== currentIndex) {
         // Pick a remaining element...
@@ -134,10 +132,12 @@ export default {
         currentIndex--;
         // And swap it with the current element.
         [array[currentIndex], array[randomIndex]] = [
-          array[randomIndex], array[currentIndex]];
+          array[randomIndex],
+          array[currentIndex],
+        ];
       }
       return array;
-    }
+    },
   },
   mounted() {
     var opts = {
@@ -158,12 +158,14 @@ export default {
           return;
         }
         response.json().then((resReq) => {
-          var arrCards = resReq.reduce(function (res, current) {
+          var arrCards = resReq.reduce(function(res, current) {
             return res.concat([current, current]);
           }, []);
-          arrCards = this.shuffle(arrCards)
-          this.cards = arrCards
-          setTimeout(()=>{this.isCardsReady = true}, 1000)
+          arrCards = this.shuffle(arrCards);
+          this.cards = arrCards;
+          setTimeout(() => {
+            this.isCardsReady = true;
+          }, 1000);
         });
       })
       .catch((error) => {
