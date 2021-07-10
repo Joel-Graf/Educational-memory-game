@@ -34,17 +34,16 @@ public class JogoController {
 		List<Animal> animais = new ArrayList<Animal>();
 		List<Long> idAnimais = new ArrayList<Long>();
 		
-		Random gerador = new Random();
+		Random random = new Random();
 		for(int i=1;i<=newJogo.getQuantidadeCartas();i++) {
-		    long index = gerador.nextInt(todosAnimais.size());
+		    long index = random.nextInt(todosAnimais.size());
 		    if ((index==0)||(index<0)||(idAnimais.contains(index))) {
 		    	 i-=1;
 				 continue;
 		    }
 		    idAnimais.add(index);
-		    animais.add(animalRepository.findById(index).orElse(null));
+		    animais.add(todosAnimais.get((int) index));
 		}
-		System.out.println(idAnimais);
 		return animais;
 	}
 }
