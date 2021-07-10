@@ -32,17 +32,19 @@ public class JogoController {
 	 public List<Animal> obterAnimais(@RequestBody JogoModel newJogo) {
 		List<Animal> todosAnimais = animalRepository.findByBioma(newJogo.getIdBioma());
 		List<Animal> animais = new ArrayList<Animal>();
+		List<Long> idAnimais = new ArrayList<Long>();
 		
 		Random gerador = new Random();
 		for(int i=1;i<=newJogo.getQuantidadeCartas();i++) {
 		    long index = gerador.nextInt(todosAnimais.size());
-		    if (index==0) {
+		    if ((index==0)||(index<0)||(idAnimais.contains(index))) {
 		    	 i-=1;
 				 continue;
 		    }
+		    idAnimais.add(index);
 		    animais.add(animalRepository.findById(index).orElse(null));
 		}
-		
+		System.out.println(idAnimais);
 		return animais;
 	}
 }

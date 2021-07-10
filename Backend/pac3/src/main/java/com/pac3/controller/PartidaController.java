@@ -50,35 +50,14 @@ public class PartidaController {
 		partidasAluno.add(partidaAtual);
 		aluno.setPartidas(partidasAluno);
 		alunoRepository.save(aluno);
-		/*
-		List<Partida> partidas = partidaRepository.findAll();
-		List<Long> tempos = new ArrayList<Long>();
 		
-		for (Partida partida : partidas) {
-			tempos.add(partida.getTempoJogado());
-		}
-		
-		Long soma = 0l;
-		Long tempoMedio = 0l;
-		for (Long tempo : tempos) {
-			soma+=tempo;
-		}
-		tempoMedio=soma/tempos.size();
-		
-		Aluno aluno = new Aluno();
-		aluno = alunoRepository.findById(newPartida.getAlunoId()).orElse(null);
-		aluno.setTempoMedio(tempoMedio);
-		alunoRepository.save(aluno);
-		*/
 		return new ResponseEntity<>(partidaAtual.getId(), HttpStatus.OK);
-		
 	}
 	
 	@PostMapping("/finishGame")
 	public ResponseEntity<?> startGame(@RequestBody PartidaModel newPartida) {
 
 		Partida partidaAtual = partidaRepository.getById(newPartida.getId());
-		System.out.println(partidaAtual.getStatus());
 		partidaAtual.setStatus(newPartida.getStatus());
 		partidaAtual.setTempoJogado(newPartida.getTempoJogado());
 		partidaRepository.save(partidaAtual);
@@ -88,7 +67,6 @@ public class PartidaController {
 		for (Partida partidaBanco : partidasBanco) {
 			if ((partidaBanco.getAluno()!=null)&&(partidaBanco.getAluno().getId()==newPartida.getAlunoId())) {
 				partidasAluno.add(partidaBanco);
-				System.out.println(partidaBanco.getId());
 			}
 		}
 		List<Long> tempos = new ArrayList<Long>();
@@ -103,15 +81,13 @@ public class PartidaController {
 			if(tempo!=null) { soma+=tempo; }
 		}
 		if (tempos.size()!=0) { tempoMedio=soma/tempos.size(); }
-		System.out.println(newPartida.getAlunoId());
+		
 		Aluno aluno  = alunoRepository.findById(newPartida.getAlunoId()).orElse(null);
 		aluno.setTempoMedio(tempoMedio);
-		
 		partidasAluno.add(partidaAtual);
 		aluno.setPartidas(partidasAluno);
 		alunoRepository.save(aluno);
 		
 		return new ResponseEntity<>(true, HttpStatus.CREATED);
-		
 	}
 }
