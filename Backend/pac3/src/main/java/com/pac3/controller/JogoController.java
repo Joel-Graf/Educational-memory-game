@@ -30,7 +30,7 @@ public class JogoController {
 
 	@PostMapping("/animais")
 	 public List<Animal> obterAnimais(@RequestBody JogoModel newJogo) {
-		List<Animal> todosAnimais = animalRepository.findByBioma(biomaRepository.findById(newJogo.getIdBioma()));
+		List<Animal> todosAnimais = animalRepository.findByBioma(newJogo.getIdBioma());
 		List<Animal> animais = new ArrayList<Animal>();
 		
 		Random gerador = new Random();
