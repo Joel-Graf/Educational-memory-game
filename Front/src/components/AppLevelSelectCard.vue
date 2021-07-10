@@ -72,7 +72,7 @@ export default {
 
 <style>
   #teste{
-    background-image:url('../assets/Imagens/oceano/oceano.jpg');
+    background-image:url('../assets/Imagens/Oceano/oceano.jpg');
     background-size: 100% 100%;
   }
 </style>
