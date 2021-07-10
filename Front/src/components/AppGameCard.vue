@@ -8,7 +8,7 @@
       <v-img
         id="teste"
         class="mx-auto my-auto d-flex justify-center align-center"
-        
+        :src="require('@/assets/Imagens/' + LevelName + '/' + card.imagem + '.jpg')" 
       >
         <div style="background-color:rgba(0,0,0,0.2)">
           <p class='text-h6 text-center' style="color:white">{{ card.nome.toUpperCase() }}</p>
@@ -75,7 +75,6 @@ export default {
         this.isFliped = true;
         this.$emit("flip-card", {
           id: this.card.id,
-          animalId: this.card.animalId,
           index: this.Index,
         });
       }

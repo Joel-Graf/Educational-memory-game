@@ -1,6 +1,6 @@
 s<template>
   <div>
-    <v-overlay :value="!isGameStarted" absolute="true">
+    <v-overlay :value="!isGameStarted" :absolute="true">
       <v-btn
         @click="isGameStarted = !isGameStarted"
         :disabled="!isCardsReady"
@@ -19,11 +19,10 @@ s<template>
       @timeout="gameResult = 'Derrota'"
     />
     <v-container class="interface" fluid>
-      {{this.cards}}
       <v-row v-if="!isGameFinished" align="center" class="cards">
         <AppGameCard
           v-for="(card, index) in cards"
-          :key="card.id"
+          :key="index+'_'+card.nome"
           :Card="card"
           :LevelName="level.nome"
           :height="324"
@@ -65,15 +64,7 @@ export default {
       cardsFliped: [],
       isGameStarted: false,
       isCardsReady: false,
-      cards: [
-        // {
-        //   id: 1,
-        //   animalId: 1,
-        //   name: "gato",
-        //   image: "gato-frente.jpg",
-        //   sound: "gato-som.mp3",
-        // },
-      ],
+      cards: [],
     };
   },
   computed: {
@@ -89,10 +80,7 @@ export default {
       if (newCardsRemaning == 0) {
         this.gameResult = "Vitória";
       }
-    },
-    cards(newCards) {
-      if (newCards.length > 0) this.isCardsReady = true;
-    },
+    }
   },
   methods: {
     handleFlipCard(cardObject) {
@@ -110,7 +98,8 @@ export default {
           setTimeout(function() {
             var card1 = vueInst.cardsFliped[0];
             var card2 = vueInst.cardsFliped[1];
-            if (card1.animalId == card2.animalId) {
+            
+            if (card1.id == card2.id) {
               // Se fechou par, deleta as cartas
               vueInst.deleteCards(card1, card2);
             } else {
@@ -136,6 +125,19 @@ export default {
         this.$delete(this.cards, card1.index);
       }
     },
+    shuffle(array) {
+      var currentIndex = array.length,  randomIndex;
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+      }
+      return array;
+    }
   },
   mounted() {
     var opts = {
@@ -156,9 +158,12 @@ export default {
           return;
         }
         response.json().then((resReq) => {
-          this.cards = resReq.reduce(function (res, current) {
+          var arrCards = resReq.reduce(function (res, current) {
             return res.concat([current, current]);
           }, []);
+          arrCards = this.shuffle(arrCards)
+          this.cards = arrCards
+          setTimeout(()=>{this.isCardsReady = true}, 1000)
         });
       })
       .catch((error) => {
