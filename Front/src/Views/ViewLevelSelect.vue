@@ -57,9 +57,9 @@ export default {
   data() {
     return {
       dificuldades: [
-        { id: 1, nome: "facil", qtd_cartas: 8, tempo_limite: 60 },
-        { id: 2, nome: "medio", qtd_cartas: 14, tempo_limite: 90 },
-        { id: 3, nome: "dificil", qtd_cartas: 20, tempo_limite: 120 },
+        { id: 1, nome: "facil", qtd_cartas: 6, tempo_limite: 60 },
+        { id: 2, nome: "medio", qtd_cartas: 10, tempo_limite: 90 },
+        { id: 3, nome: "dificil", qtd_cartas: 14, tempo_limite: 120 },
       ],
       dificuldadeSelecionada: "facil",
       levels: [],
