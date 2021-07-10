@@ -80,7 +80,7 @@ export default {
         if (value > 0 && this.TimerEnabled) {
           setTimeout(() => {
             this.timeRemaining--;
-          }, 1000);
+          }, 1050);
         }
       },
       immediate: true,
