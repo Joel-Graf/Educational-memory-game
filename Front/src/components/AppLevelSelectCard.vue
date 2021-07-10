@@ -9,8 +9,9 @@
       :disabled="Level.isLevelLocked"
     >
       <v-img
-        height="260"
-        class="mx-3 mb-2"
+        height="100%"
+        width="100%"
+        class=" mb-2"
         :src="
           require('@/assets/Imagens/' +
             Level.nome +
@@ -71,8 +72,5 @@ export default {
 </script>
 
 <style>
-  #teste{
-    background-image:url('../assets/Imagens/oceano/oceano.jpg');
-    background-size: 100% 100%;
-  }
+
 </style>

@@ -36,6 +36,7 @@ public class JogoController {
 		Random gerador = new Random();
 		for(int i=1;i<=newJogo.getQuantidadeCartas();i++) {
 		    long index = gerador.nextInt(todosAnimais.size());
+		    System.out.println("index" + index );
 		    if (index==0) {
 		    	 i-=1;
 				 continue;

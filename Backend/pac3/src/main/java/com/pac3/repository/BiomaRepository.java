@@ -12,5 +12,6 @@ import com.pac3.entity.Bioma;
 public interface BiomaRepository  extends JpaRepository<Bioma, Long>{
 
 	Optional<Bioma> findById(Long id);
+	//Bioma findByBioma(Bioma bioma);
 	public List<Bioma> findAllByOrderByIdAsc();
 }
