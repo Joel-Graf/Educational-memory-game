@@ -14,13 +14,8 @@
       {{ this.GameResult == "Vitória" ? "Jogar Novamente" : "Reiniciar" }}
     </v-btn>
     <router-link :to="exit">
-      <v-btn
-        class="my-5"
-        color="secondary"
-        large
-        min-width="10%"
-      >
-      <v-icon left dark>mdi-arrow-left</v-icon>
+      <v-btn class="my-5" color="secondary" large min-width="10%">
+        <v-icon left dark>mdi-arrow-left</v-icon>
         Sair
       </v-btn>
     </router-link>
@@ -37,13 +32,38 @@ export default {
   },
   data() {
     return {
-      exit: "/Menu"
+      exit: "/Menu",
     };
   },
   methods: {
     restartGame() {
-      this.$router.push('Zoo')
-    }
+      this.$router.push("Zoo");
+    },
+  },
+  mounted() {
+    var opts = {
+      id: this.$store.state.matchId,
+      alunoId: this.$store.state.userId,
+      tempoJogado: this.$store.state.tempoDecorrido,
+      status: this.GameResult.toUpperCase(),
+    };
+    fetch("http://localhost:8090/pac3/finishGame", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(opts),
+    })
+      .then((response) => {
+        if (response.status !== 201) {
+          console.log("Request Error! Status: " + response.status);
+          return;
+        }
+      })
+      .catch((error) => {
+        console.log("Fetch Error! " + error);
+      });
   },
 };
 </script>

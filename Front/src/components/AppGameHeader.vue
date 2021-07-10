@@ -82,6 +82,7 @@ export default {
             this.timeRemaining--;
           }, 1050);
         }
+        this.$store.state.tempoDecorrido = this.initialTime - this.timeRemaining 
       },
       immediate: true,
     },

@@ -141,6 +141,32 @@ export default {
   },
   mounted() {
     var opts = {
+      alunoId:this.$store.state.userId,
+      difuculdadeId: this.dificulty.id,
+      biomaId: this.$store.state.level.id
+    };
+    fetch("http://localhost:8090/pac3/startGame", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(opts),
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          console.log("Request Error! Status: " + response.status);
+          return;
+        }
+        response.json().then((resReq) => {
+          this.$store.state.matchId = resReq
+        });
+        // matchId
+      })
+      .catch((error) => {
+        console.log("Fetch Error! " + error);
+      });
+    opts = {
       idBioma: this.$store.state.level.id,
       quantidadeCartas: this.$store.state.dificuldade.qtd_cartas / 2,
     };
