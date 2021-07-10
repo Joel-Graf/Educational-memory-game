@@ -7,9 +7,9 @@
         </v-icon>
         {{ CardPairsRemaining }}/{{ InitialCards / 2 }}
       </div>
-      
+
       <span class="text-h4 font-weight-medium"
-        >{{ Level }} - {{ Dificulty.name }}</span
+        >{{ Level.nome }} - {{ Dificulty.nome }}</span
       >
 
       <div>
@@ -34,7 +34,7 @@
 export default {
   props: {
     Level: {
-      type: String,
+      type: Object,
       required: true,
     },
     Dificulty: {
@@ -56,8 +56,8 @@ export default {
   },
   data() {
     return {
-      initialTime: this.Dificulty.timeLimit,
-      timeRemaining: this.Dificulty.timeLimit,
+      initialTime: this.Dificulty.tempo_limite,
+      timeRemaining: this.Dificulty.tempo_limite,
       timerIcon: "mdi-clock-time-five-outline",
       timerColor: "success",
     };

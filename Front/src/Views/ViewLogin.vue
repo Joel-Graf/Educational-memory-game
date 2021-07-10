@@ -72,7 +72,7 @@ export default {
         console.log("Fetch Error! "+error)
       })
       .finally(() => {
-        this.$router.push("Menu")
+        setTimeout((()=>{this.$router.push("Menu")}), 300)
       })
     },
   }

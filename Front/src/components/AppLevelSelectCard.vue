@@ -8,7 +8,17 @@
       v-on="!Level.isLevelLocked ? { click: () => criaJogo() } : {}"
       :disabled="Level.isLevelLocked"
     >
-      <v-img height="260" class="mx-3 mb-2">
+      <v-img
+        height="260"
+        class="mx-3 mb-2"
+        :src="
+          require('@/assets/Imagens/' +
+            Level.nome +
+            '/' +
+            Level.nome.toLowerCase() +
+            '_fundo.jpg')
+        "
+      >
         <v-card-title
           class="
             d-flex
@@ -46,16 +56,23 @@ export default {
     },
   },
   data() {
-    return {
-    };
+    return {};
   },
   methods: {
     criaJogo() {
-      this.$store.commit('criaJogo', { level: this.Level, dificuldade: this.Dificuldade})
-      this.$router.push('Game')
-    }
+      this.$store.commit("criaJogo", {
+        level: this.Level,
+        dificuldade: this.Dificuldade,
+      });
+      this.$router.push("Game");
+    },
   },
 };
 </script>
 
-<style></style>
+<style>
+  #teste{
+    background-image:url('../assets/Imagens/oceano/oceano.jpg');
+    background-size: 100% 100%;
+  }
+</style>
