@@ -1,7 +1,12 @@
 s<template>
   <div>
     <v-overlay :value="!isGameStarted" absolute="true">
-      <v-btn @click="isGameStarted = !isGameStarted" color="primary" x-large>
+      <v-btn
+        @click="isGameStarted = !isGameStarted"
+        :disabled="!isCardsReady"
+        color="primary"
+        x-large
+      >
         Iniciar Jogo
       </v-btn>
     </v-overlay>
@@ -9,11 +14,12 @@ s<template>
       :Dificulty="dificulty"
       :Level="level"
       :TimerEnabled="isGameStarted && !isGameFinished"
-      :CardPairsRemaining="cards.length"
+      :CardPairsRemaining="cardPairsRemaining"
       :InitialCards="dificulty.qtd_cartas"
       @timeout="gameResult = 'Derrota'"
     />
     <v-container class="interface" fluid>
+      {{this.cards}}
       <v-row v-if="!isGameFinished" align="center" class="cards">
         <AppGameCard
           v-for="(card, index) in cards"
@@ -59,28 +65,15 @@ export default {
       gameResult: "",
       cardsFliped: [],
       isGameStarted: false,
+      isCardsReady: false,
       cards: [
-        {
-          id: 1,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 1,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
-        {
-          id: 1,
-          animalId: 1,
-          name: "gato",
-          image: "gato-frente.jpg",
-          sound: "gato-som.mp3",
-        },
+        // {
+        //   id: 1,
+        //   animalId: 1,
+        //   name: "gato",
+        //   image: "gato-frente.jpg",
+        //   sound: "gato-som.mp3",
+        // },
       ],
     };
   },
@@ -97,6 +90,9 @@ export default {
       if (newCardsRemaning == 0) {
         this.gameResult = "Vitória";
       }
+    },
+    cards(newCards) {
+      if (newCards.length > 0) this.isCardsReady = true;
     },
   },
   methods: {
@@ -148,8 +144,6 @@ export default {
   },
   mounted() {
     var opts = {
-      // idBioma: this.$store.state.level.id,
-      // quantidadeCartas: (this.$store.state.dificuldade.qtd_cartas/2),
       idBioma: this.$store.state.level.id,
       quantidadeCartas: this.$store.state.dificuldade.qtd_cartas / 2,
     };
@@ -166,9 +160,11 @@ export default {
           console.log("Request Error! Status: " + response.status);
           return;
         }
-        // response.json().then((res) => {
-        //   // this.cards = res;
-        // });
+        response.json().then((resReq) => {
+          this.cards = resReq.reduce(function (res, current) {
+            return res.concat([current, current]);
+          }, []);
+        });
       })
       .catch((error) => {
         console.log("Fetch Error! " + error);

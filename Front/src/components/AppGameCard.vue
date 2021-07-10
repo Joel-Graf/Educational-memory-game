@@ -11,7 +11,7 @@
         
       >
         <div style="background-color:rgba(0,0,0,0.2)">
-          <p class='text-h6 text-center' style="color:white">{{ card.name.toUpperCase() }}</p>
+          <p class='text-h6 text-center' style="color:white">{{ card.nome.toUpperCase() }}</p>
         </div>
       </v-img>
     </div>
