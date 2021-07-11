@@ -3,7 +3,7 @@
     <div id="mainHeader" class="text-center">
       <h3>Aluno</h3>
       <h3>Fase</h3>
-      <h3>Tempo médio</h3>
+      <h3>Tempo médio (segundos)</h3>
     </div>
   </v-container>
 </template>

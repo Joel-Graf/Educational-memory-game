@@ -8,7 +8,7 @@
           color="dark darken-2"
           dark
         >
-          <v-icon dark left> mdi-arrow-left </v-icon>Back
+          <v-icon dark left> mdi-arrow-left </v-icon>Voltar
         </v-btn>
       </router-link>
 
