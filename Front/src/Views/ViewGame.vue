@@ -107,8 +107,8 @@ export default {
             });
             setTimeout(() => {
               vueInst.isGameLocked = false;
-            }, 250);
-          }, 750);
+            }, 300);
+          }, 800);
         }
       }
     },
@@ -139,7 +139,7 @@ export default {
       return array;
     },
   },
-  mounted() {
+  created() {
     var opts = {
       alunoId:this.$store.state.userId,
       difuculdadeId: this.dificulty.id,

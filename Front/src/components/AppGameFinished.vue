@@ -60,6 +60,13 @@ export default {
           console.log("Request Error! Status: " + response.status);
           return;
         }
+        if(this.GameResult.toUpperCase() == "VITÓRIA") {
+          if(this.$store.state.userLevel < 4) {
+            this.$store.state.userLevel += 1
+          } else {
+            this.$store.state.userLevel = 4
+          }
+        }
       })
       .catch((error) => {
         console.log("Fetch Error! " + error);
