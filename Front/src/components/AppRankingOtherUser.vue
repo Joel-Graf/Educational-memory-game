@@ -10,7 +10,7 @@
               color="primary"
               height="70"
               min="1"
-              max="15"
+              max="4"
               :value="item.fase"
               readonly
               thumb-label="always"

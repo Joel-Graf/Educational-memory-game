@@ -8,7 +8,7 @@
         color="#000000"
         thumb-label="always"
         min="1"
-        max="15"
+        max="4"
       ></v-slider>
       <h2 class="text-center">{{ alunoLogado.tempoMedio }}</h2>
     </div>
