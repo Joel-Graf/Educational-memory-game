@@ -10,7 +10,7 @@
         min="1"
         max="15"
       ></v-slider>
-      <h2 class="text-center">{{ alunoLogado.fase }}</h2>
+      <h2 class="text-center">{{ alunoLogado.tempoMedio }}</h2>
     </div>
   </v-container>
 </template>

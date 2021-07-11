@@ -83,11 +83,17 @@ public class PartidaController {
 		if (tempos.size()!=0) { tempoMedio=soma/tempos.size(); }
 		
 		Aluno aluno  = alunoRepository.findById(newPartida.getAlunoId()).orElse(null);
+		
 		aluno.setTempoMedio(tempoMedio);
 		partidasAluno.add(partidaAtual);
-		aluno.setPartidas(partidasAluno);
-		alunoRepository.save(aluno);
 		
+		if(newPartida.getStatus().equals("VITÓRIA")) {
+			System.out.println(aluno.getFase());
+			aluno.setFase(aluno.getFase()+1);
+			alunoRepository.save(aluno);
+			return new ResponseEntity<>(aluno.getFase()+1, HttpStatus.CREATED);
+		}
+		alunoRepository.save(aluno);
 		return new ResponseEntity<>(true, HttpStatus.CREATED);
 	}
 }
