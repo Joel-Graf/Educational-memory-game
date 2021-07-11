@@ -16,7 +16,7 @@
             outlined
           ></v-text-field>
 
-          <v-text-field label="Senha" v-model="senha" outlined></v-text-field>
+          <v-text-field type="password" label="Senha" v-model="senha" outlined></v-text-field>
         </div>
 
         <router-link :to="this.valido ? '/Login' : '/Register'">

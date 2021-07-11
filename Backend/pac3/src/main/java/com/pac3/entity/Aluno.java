@@ -51,8 +51,8 @@ public class Aluno {
 		this.nome=alunoModel.getNome();
 		this.usuario=alunoModel.getUsuario();
 		this.senha=alunoModel.getSenha();
-		this.partidas=alunoModel.getPartidas();
-		this.totalPontos=0l;
+		this.partidas=null;
+		this.totalPontos=alunoModel.getTotalPontos();
 		this.fase=alunoModel.getFase();
 		this.tempoMedio=alunoModel.getTempoMedioFase();
 		this.professor=null;

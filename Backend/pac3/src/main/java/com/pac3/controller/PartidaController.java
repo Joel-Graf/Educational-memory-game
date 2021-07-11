@@ -44,7 +44,12 @@ public class PartidaController {
 				dificuldadeRepository.findById(newPartida.getDifuculdadeId()).orElse(null))
 		);
 
-		Partida partidaAtual = partidaRepository.getById(partidaRepository.count());
+		List<Partida> partidasBanco = partidaRepository.findAll();
+		int quantidadeRegistros = partidasBanco.size();
+		System.out.println(quantidadeRegistros);
+		Partida partidaAtual = partidasBanco.get(quantidadeRegistros-1);
+		System.out.println("partidaAtual: "+partidaAtual.getId());
+		
 		ArrayList<Partida> partidasAluno = new ArrayList<Partida>();
 		Aluno aluno = alunoRepository.findById(newPartida.getAlunoId()).orElse(null);
 		partidasAluno.add(partidaAtual);
@@ -58,6 +63,8 @@ public class PartidaController {
 	public ResponseEntity<?> startGame(@RequestBody PartidaModel newPartida) {
 
 		Partida partidaAtual = partidaRepository.getById(newPartida.getId());
+		System.out.println("id: "+newPartida.getId());
+		System.out.println("status: "+newPartida.getStatus());
 		partidaAtual.setStatus(newPartida.getStatus());
 		partidaAtual.setTempoJogado(newPartida.getTempoJogado());
 		partidaRepository.save(partidaAtual);
@@ -78,20 +85,25 @@ public class PartidaController {
 		Long soma = 0l;
 		Long tempoMedio = 0l;
 		for (Long tempo : tempos) {
-			if(tempo!=null) { soma+=tempo; }
+			if((tempo!=null)&&(newPartida.getStatus().equals("VITÓRIA"))) { soma+=tempo; }
+			System.out.println("tempo: "+tempo);
 		}
 		if (tempos.size()!=0) { tempoMedio=soma/tempos.size(); }
-		
+		System.out.println("tempoMedio: "+tempoMedio);
 		Aluno aluno  = alunoRepository.findById(newPartida.getAlunoId()).orElse(null);
+		Long faseAtual = aluno.getFase();
+		Long novafase = faseAtual;
 		
 		aluno.setTempoMedio(tempoMedio);
-		partidasAluno.add(partidaAtual);
 		
 		if(newPartida.getStatus().equals("VITÓRIA")) {
 			System.out.println(aluno.getFase());
-			aluno.setFase(aluno.getFase()+1);
+			if((faseAtual>0)&&(faseAtual<5)) {
+				novafase=novafase+1;
+			}
+			aluno.setFase(novafase);
 			alunoRepository.save(aluno);
-			return new ResponseEntity<>(aluno.getFase()+1, HttpStatus.CREATED);
+			return new ResponseEntity<>(novafase, HttpStatus.CREATED);
 		}
 		alunoRepository.save(aluno);
 		return new ResponseEntity<>(true, HttpStatus.CREATED);

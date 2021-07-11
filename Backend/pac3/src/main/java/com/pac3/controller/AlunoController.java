@@ -51,6 +51,10 @@ public class AlunoController {
 		if(alunoRepository.findByUsuario(newAluno.getUsuario()) != null) return new ResponseEntity<>(false, HttpStatus.LOCKED);
 		if(alunoRepository.findByNome(newAluno.getNome()) != null) return new ResponseEntity<>(false, HttpStatus.LOCKED);
 		
+		newAluno.setTempoMedioFase(0l);
+		newAluno.setFase(1l);
+		newAluno.setTotalPontos(0l);
+		
 		alunoRepository.save(new Aluno(newAluno));
 		return new ResponseEntity<>(true, HttpStatus.CREATED);
 		

@@ -26,5 +26,5 @@ public class AlunoModel {
    // private ProfessorModel professorModel;
 	
 	//@JsonProperty("partidas")
-	private List<Partida> partidas;
+	//private List<Partida> partidas;
 }

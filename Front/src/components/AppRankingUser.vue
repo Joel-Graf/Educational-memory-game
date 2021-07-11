@@ -4,7 +4,7 @@
       <h2 class="text-center">{{ alunoLogado.nome }}</h2>
       <v-slider
         id="slider"
-        v-model="alunoLogado.tempoMedio"
+        v-model="alunoLogado.fase"
         color="#000000"
         thumb-label="always"
         min="1"
