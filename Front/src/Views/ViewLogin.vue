@@ -16,9 +16,8 @@
           <v-text-field v-model="user.password"  label="Senha" outlined type="password"></v-text-field>
 
           <div class="footerLinks">
-            <div><a> Esqueci minha senha </a></div>
             <router-link to="/Register">
-              <div style="margin-left: 45vh"><a> Cadastrar </a></div>
+              <div>Cadastrar</div>
             </router-link>
           </div>
         </div>
