@@ -1,4 +1,5 @@
 # PAC 3 - Jogo da memória
+Repositório dedicado ao PAC 3, trabalho desenvolvido em grupo para o curso de Engenharia de Software da Católica SC (3º Fase).
 
 ## Colaboradores
 
